@@ -645,6 +645,8 @@ public class PlayScreenGUI extends javax.swing.JFrame {
         stand.setText("jLabel1");
         getContentPane().add(stand);
         stand.setBounds(0, 50, 200, 220);
+
+        letter1.setEnabled(false);
         getContentPane().add(letter1);
         letter1.setBounds(210, 190, 46, 50);
 
@@ -655,18 +657,32 @@ public class PlayScreenGUI extends javax.swing.JFrame {
         background.setPreferredSize(new java.awt.Dimension(600, 400));
         getContentPane().add(background);
         background.setBounds(0, 0, 230, 290);
+
+        letter8.setEnabled(false);
         getContentPane().add(letter8);
         letter8.setBounds(560, 190, 46, 50);
+
+        letter7.setEnabled(false);
         getContentPane().add(letter7);
         letter7.setBounds(510, 190, 46, 50);
+
+        letter6.setEnabled(false);
         getContentPane().add(letter6);
         letter6.setBounds(460, 190, 46, 50);
+
+        letter5.setEnabled(false);
         getContentPane().add(letter5);
         letter5.setBounds(410, 190, 46, 50);
+
+        letter4.setEnabled(false);
         getContentPane().add(letter4);
         letter4.setBounds(360, 190, 46, 50);
+
+        letter3.setEnabled(false);
         getContentPane().add(letter3);
         letter3.setBounds(310, 190, 46, 50);
+
+        letter2.setEnabled(false);
         getContentPane().add(letter2);
         letter2.setBounds(260, 190, 46, 50);
 
