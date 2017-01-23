@@ -702,156 +702,182 @@ public class PlayScreenGUI extends javax.swing.JFrame {
     //          it disables the button and sees if it is correct 
     private void buttonAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAMouseClicked
         buttonA.setEnabled(false);
+        buttonA.setVisible(false);
         setGuessFalse();
         gameCycle('A');
     }//GEN-LAST:event_buttonAMouseClicked
 
     private void buttonBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonBMouseClicked
         buttonB.setEnabled(false);
+        buttonB.setVisible(false);
         setGuessFalse();
         gameCycle('B');
     }//GEN-LAST:event_buttonBMouseClicked
 
     private void buttonCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonCMouseClicked
         buttonC.setEnabled(false);
+        buttonC.setVisible(false);
         setGuessFalse();
         gameCycle('C');
     }//GEN-LAST:event_buttonCMouseClicked
 
     private void buttonDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonDMouseClicked
         buttonD.setEnabled(false);
+        buttonD.setVisible(false);
         setGuessFalse();
         gameCycle('D');
     }//GEN-LAST:event_buttonDMouseClicked
 
     private void buttonEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonEMouseClicked
         buttonE.setEnabled(false);
+        buttonE.setVisible(false);
         setGuessFalse();
         gameCycle('E');
     }//GEN-LAST:event_buttonEMouseClicked
 
     private void buttonFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonFMouseClicked
         buttonF.setEnabled(false);
+        buttonF.setVisible(false);
         setGuessFalse();
         gameCycle('F');
     }//GEN-LAST:event_buttonFMouseClicked
 
     private void buttonGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonGMouseClicked
         buttonG.setEnabled(false);
+        buttonG.setVisible(false);
         setGuessFalse();
         gameCycle('G');
     }//GEN-LAST:event_buttonGMouseClicked
 
     private void buttonHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonHMouseClicked
         buttonH.setEnabled(false);
+        buttonH.setVisible(false);
         setGuessFalse();
         gameCycle('H');
     }//GEN-LAST:event_buttonHMouseClicked
 
     private void buttonIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonIMouseClicked
         buttonI.setEnabled(false);
+        buttonI.setVisible(false);
         setGuessFalse();
         gameCycle('I');
     }//GEN-LAST:event_buttonIMouseClicked
 
     private void buttonJMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonJMouseClicked
         buttonJ.setEnabled(false);
+        buttonJ.setVisible(false);
         setGuessFalse();
         gameCycle('J');
     }//GEN-LAST:event_buttonJMouseClicked
 
     private void buttonKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonKMouseClicked
         buttonK.setEnabled(false);
+        buttonK.setVisible(false);
         setGuessFalse();
         gameCycle('K');
     }//GEN-LAST:event_buttonKMouseClicked
 
     private void buttonLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonLMouseClicked
         buttonL.setEnabled(false);
+        buttonL.setVisible(false);
         setGuessFalse();
         gameCycle('L');
     }//GEN-LAST:event_buttonLMouseClicked
 
     private void buttonMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonMMouseClicked
         buttonM.setEnabled(false);
+        buttonM.setVisible(false);
         setGuessFalse();
         gameCycle('M');
     }//GEN-LAST:event_buttonMMouseClicked
 
     private void buttonNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonNMouseClicked
         buttonN.setEnabled(false);
+        buttonN.setVisible(false);
         setGuessFalse();
         gameCycle('N');
     }//GEN-LAST:event_buttonNMouseClicked
 
     private void buttonOMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonOMouseClicked
         buttonO.setEnabled(false);
+        buttonO.setVisible(false);
         setGuessFalse();
         gameCycle('O');
     }//GEN-LAST:event_buttonOMouseClicked
 
     private void buttonPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonPMouseClicked
         buttonP.setEnabled(false);
+        buttonP.setVisible(false);
         setGuessFalse();
         gameCycle('P');
     }//GEN-LAST:event_buttonPMouseClicked
 
     private void buttonQMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonQMouseClicked
         buttonQ.setEnabled(false);
+        buttonQ.setVisible(false);
         setGuessFalse();
         gameCycle('Q');
     }//GEN-LAST:event_buttonQMouseClicked
 
     private void buttonRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRMouseClicked
         buttonR.setEnabled(false);
+        buttonR.setVisible(false);
         setGuessFalse();
         gameCycle('R');
     }//GEN-LAST:event_buttonRMouseClicked
 
     private void buttonSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSMouseClicked
         buttonS.setEnabled(false);
+        buttonS.setVisible(false);
         setGuessFalse();
         gameCycle('S');
     }//GEN-LAST:event_buttonSMouseClicked
 
     private void buttonTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonTMouseClicked
         buttonT.setEnabled(false);
+        buttonT.setVisible(false);
         setGuessFalse();
         gameCycle('T');
     }//GEN-LAST:event_buttonTMouseClicked
 
     private void buttonUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonUMouseClicked
         buttonU.setEnabled(false);
+        buttonU.setVisible(false);
         setGuessFalse();
         gameCycle('U');
     }//GEN-LAST:event_buttonUMouseClicked
 
     private void buttonVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonVMouseClicked
         buttonV.setEnabled(false);
+        buttonV.setVisible(false);
         setGuessFalse();
         gameCycle('V');
     }//GEN-LAST:event_buttonVMouseClicked
 
     private void buttonWMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonWMouseClicked
         buttonW.setEnabled(false);
+        buttonW.setVisible(false);
         setGuessFalse();
         gameCycle('W');
     }//GEN-LAST:event_buttonWMouseClicked
 
     private void buttonXMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonXMouseClicked
         buttonX.setEnabled(false);
+        buttonX.setVisible(false);
         setGuessFalse();
         gameCycle('X');
     }//GEN-LAST:event_buttonXMouseClicked
 
     private void buttonYMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonYMouseClicked
         buttonY.setEnabled(false);
+        buttonY.setVisible(false);
         setGuessFalse();
         gameCycle('Y');
     }//GEN-LAST:event_buttonYMouseClicked
 
     private void buttonZMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonZMouseClicked
         buttonZ.setEnabled(false);
+        buttonZ.setVisible(false);
         setGuessFalse();
         gameCycle('Z');
     }//GEN-LAST:event_buttonZMouseClicked
