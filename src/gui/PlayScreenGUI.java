@@ -611,35 +611,36 @@ public class PlayScreenGUI extends javax.swing.JFrame {
         getContentPane().add(dateTime);
         dateTime.setBounds(430, 30, 150, 20);
 
-        leftArm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Black.png"))); // NOI18N
+        leftArm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/leftarm.png"))); // NOI18N
         leftArm.setText("jLabel3");
         getContentPane().add(leftArm);
-        leftArm.setBounds(144, 130, 30, 10);
+        leftArm.setBounds(150, 100, 30, 70);
 
-        rightArm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Black.png"))); // NOI18N
+        rightArm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rightarm.png"))); // NOI18N
         rightArm.setText("jLabel1");
         getContentPane().add(rightArm);
-        rightArm.setBounds(180, 130, 30, 10);
+        rightArm.setBounds(150, 110, 50, 50);
 
-        rightLeg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Black.png"))); // NOI18N
+        rightLeg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rightleg.png"))); // NOI18N
         rightLeg.setText("jLabel1");
+        rightLeg.setPreferredSize(new java.awt.Dimension(90, 90));
         getContentPane().add(rightLeg);
-        rightLeg.setBounds(180, 160, 10, 40);
+        rightLeg.setBounds(150, 90, 40, 90);
 
-        leftLeg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Black.png"))); // NOI18N
+        leftLeg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/leftleg.png"))); // NOI18N
         leftLeg.setText("jLabel1");
         getContentPane().add(leftLeg);
-        leftLeg.setBounds(160, 160, 10, 40);
+        leftLeg.setBounds(150, 90, 40, 90);
 
-        body.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Black.png"))); // NOI18N
+        body.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/torso.png"))); // NOI18N
         body.setText("jLabel3");
         getContentPane().add(body);
-        body.setBounds(170, 120, 10, 50);
+        body.setBounds(150, 110, 50, 50);
 
-        head.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Black.png"))); // NOI18N
+        head.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/head.png"))); // NOI18N
         head.setText("jLabel1");
         getContentPane().add(head);
-        head.setBounds(160, 90, 30, 30);
+        head.setBounds(150, 90, 50, 90);
 
         stand.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Stand.png"))); // NOI18N
         stand.setText("jLabel1");
