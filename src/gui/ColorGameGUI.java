@@ -5,6 +5,12 @@
  */
 package gui;
 
+import static java.lang.Thread.sleep;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ELEE
@@ -26,6 +32,8 @@ public class ColorGameGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        dateTime = new javax.swing.JLabel();
+        title = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(600, 400));
@@ -55,6 +63,14 @@ public class ColorGameGUI extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(250, 110, 100, 40);
+
+        dateTime.setText("Date and Time");
+        getContentPane().add(dateTime);
+        dateTime.setBounds(430, 30, 150, 20);
+
+        title.setText("Color Game");
+        getContentPane().add(title);
+        title.setBounds(430, 10, 90, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -93,8 +109,30 @@ public class ColorGameGUI extends javax.swing.JFrame {
             }
         });
     }
+        // method: displayDateTime
+    // purpose: display current time and date. Update each second.
+    public void displayDateTime() {
+       
+        Thread currentTime = new Thread() {
+            public void run() {
+                for(;;) {
+                    DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+                    Date dateObject = new Date();
+                    dateTime.setText(dateFormat.format(dateObject));
+                    try {
+                        sleep(1000);
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, e);
+                    }
+                }
+            }
+        };
+        currentTime.start();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel dateTime;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }
