@@ -27,6 +27,7 @@ public class ColorGameGUI extends javax.swing.JFrame {
     public ColorGameGUI(int finalScore) {
         
         this.finalScore = finalScore;
+        displayDateTimeColor();
         endScreen = new EndScreen(finalScore);
         initComponents();
     }
@@ -39,11 +40,16 @@ public class ColorGameGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        dateTime = new javax.swing.JLabel();
         title = new javax.swing.JLabel();
+        blueBtn = new javax.swing.JButton();
         redBtn = new javax.swing.JButton();
+        purpleBtn = new javax.swing.JButton();
+        greenBtn = new javax.swing.JButton();
+        yellowBtn = new javax.swing.JButton();
+        dateTimeColor = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Color Game");
         setMaximumSize(new java.awt.Dimension(600, 400));
         setMinimumSize(new java.awt.Dimension(600, 400));
         setPreferredSize(new java.awt.Dimension(600, 400));
@@ -70,20 +76,50 @@ public class ColorGameGUI extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(250, 110, 100, 40);
-
-        dateTime.setText("Date and Time");
-        getContentPane().add(dateTime);
-        dateTime.setBounds(430, 30, 150, 20);
+        jPanel1.setBounds(240, 180, 100, 40);
 
         title.setText("Color Game");
         getContentPane().add(title);
         title.setBounds(430, 10, 90, 20);
 
-        redBtn.setBackground(new java.awt.Color(255, 255, 255));
+        blueBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blueSplat.png"))); // NOI18N
+        blueBtn.setBorderPainted(false);
+        blueBtn.setContentAreaFilled(false);
+        blueBtn.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blackSplat.png"))); // NOI18N
+        getContentPane().add(blueBtn);
+        blueBtn.setBounds(160, 20, 110, 100);
+
         redBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/redSplat.png"))); // NOI18N
+        redBtn.setBorderPainted(false);
+        redBtn.setContentAreaFilled(false);
+        redBtn.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blackSplat.png"))); // NOI18N
         getContentPane().add(redBtn);
-        redBtn.setBounds(440, 269, 80, 70);
+        redBtn.setBounds(20, 120, 130, 100);
+
+        purpleBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/purpleSplat.png"))); // NOI18N
+        purpleBtn.setBorderPainted(false);
+        purpleBtn.setContentAreaFilled(false);
+        purpleBtn.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blackSplat.png"))); // NOI18N
+        getContentPane().add(purpleBtn);
+        purpleBtn.setBounds(410, 80, 130, 100);
+
+        greenBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/greenSplat.png"))); // NOI18N
+        greenBtn.setBorderPainted(false);
+        greenBtn.setContentAreaFilled(false);
+        greenBtn.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blackSplat.png"))); // NOI18N
+        getContentPane().add(greenBtn);
+        greenBtn.setBounds(120, 250, 130, 100);
+
+        yellowBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/yellowSplat.png"))); // NOI18N
+        yellowBtn.setBorderPainted(false);
+        yellowBtn.setContentAreaFilled(false);
+        yellowBtn.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blackSplat.png"))); // NOI18N
+        getContentPane().add(yellowBtn);
+        yellowBtn.setBounds(340, 240, 130, 100);
+
+        dateTimeColor.setText("Date and Time");
+        getContentPane().add(dateTimeColor);
+        dateTimeColor.setBounds(430, 30, 140, 20);
 
         pack();
         setLocationRelativeTo(null);
@@ -146,14 +182,14 @@ public class ColorGameGUI extends javax.swing.JFrame {
     
     // method: displayDateTime
     // purpose: display current time and date. Update each second.
-    public void displayDateTime() {
+    public void displayDateTimeColor() {
        
-        Thread currentTime = new Thread() {
+        Thread currentTimeColor = new Thread() {
             public void run() {
                 for(;;) {
                     DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
                     Date dateObject = new Date();
-                    dateTime.setText(dateFormat.format(dateObject));
+                    dateTimeColor.setText(dateFormat.format(dateObject));
                     try {
                         sleep(1000);
                     } catch (Exception e) {
@@ -162,13 +198,17 @@ public class ColorGameGUI extends javax.swing.JFrame {
                 }
             }
         };
-        currentTime.start();
+        currentTimeColor.start();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel dateTime;
+    private javax.swing.JButton blueBtn;
+    private javax.swing.JLabel dateTimeColor;
+    private javax.swing.JButton greenBtn;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton purpleBtn;
     private javax.swing.JButton redBtn;
     private javax.swing.JLabel title;
+    private javax.swing.JButton yellowBtn;
     // End of variables declaration//GEN-END:variables
 }
