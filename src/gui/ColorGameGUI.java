@@ -17,10 +17,12 @@ import javax.swing.JOptionPane;
  */
 public class ColorGameGUI extends javax.swing.JFrame {
 
+    
+    private int finalScore;
     /**
      * Creates new form ColorGameGUI
      */
-    public ColorGameGUI() {
+    public ColorGameGUI(int finalScore) {
         initComponents();
     }
 
@@ -34,6 +36,7 @@ public class ColorGameGUI extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         dateTime = new javax.swing.JLabel();
         title = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(600, 400));
@@ -71,6 +74,11 @@ public class ColorGameGUI extends javax.swing.JFrame {
         title.setText("Color Game");
         getContentPane().add(title);
         title.setBounds(430, 10, 90, 20);
+
+        jButton1.setText("jButton1");
+        jButton1.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/245.jpg"))); // NOI18N
+        getContentPane().add(jButton1);
+        jButton1.setBounds(460, 180, 93, 29);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -132,6 +140,7 @@ public class ColorGameGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel dateTime;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
