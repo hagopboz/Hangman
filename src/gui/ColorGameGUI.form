@@ -170,7 +170,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JLabel" name="dateTimeColor">
+    <Component class="javax.swing.JLabel" name="dateTime">
       <Properties>
         <Property name="text" type="java.lang.String" value="Date and Time"/>
       </Properties>

@@ -45,6 +45,7 @@ public class MenuGUI extends javax.swing.JFrame {
         backgroundLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu");
         setBackground(new java.awt.Color(0, 0, 0));
         setFocusable(false);
         setMaximumSize(new java.awt.Dimension(600, 400));

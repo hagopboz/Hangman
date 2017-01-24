@@ -5,11 +5,15 @@
  */
 package gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import static java.lang.Thread.sleep;
 import java.text.DateFormat;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 /**
  *
@@ -17,7 +21,6 @@ import javax.swing.JOptionPane;
  */
 public class ColorGameGUI extends javax.swing.JFrame {
 
-    
     static int finalScore;
     private EndScreen endScreen;
     private PlayScreenGUI playScreen;
@@ -27,8 +30,8 @@ public class ColorGameGUI extends javax.swing.JFrame {
     public ColorGameGUI(int finalScore) {
         
         this.finalScore = finalScore;
-        displayDateTimeColor();
         endScreen = new EndScreen(finalScore);
+        displayDateTimeColor();
         initComponents();
     }
 
@@ -46,7 +49,7 @@ public class ColorGameGUI extends javax.swing.JFrame {
         purpleBtn = new javax.swing.JButton();
         greenBtn = new javax.swing.JButton();
         yellowBtn = new javax.swing.JButton();
-        dateTimeColor = new javax.swing.JLabel();
+        dateTime = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Color Game");
@@ -117,9 +120,9 @@ public class ColorGameGUI extends javax.swing.JFrame {
         getContentPane().add(yellowBtn);
         yellowBtn.setBounds(340, 240, 130, 100);
 
-        dateTimeColor.setText("Date and Time");
-        getContentPane().add(dateTimeColor);
-        dateTimeColor.setBounds(430, 30, 140, 20);
+        dateTime.setText("Date and Time");
+        getContentPane().add(dateTime);
+        dateTime.setBounds(430, 30, 140, 20);
 
         pack();
         setLocationRelativeTo(null);
@@ -179,31 +182,30 @@ public class ColorGameGUI extends javax.swing.JFrame {
         String displayScore = Integer.toString(finalScore);
         //scoreLabel.setText(displayScore);
     }
-    
+        
     // method: displayDateTime
     // purpose: display current time and date. Update each second.
     public void displayDateTimeColor() {
-       
-        Thread currentTimeColor = new Thread() {
-            public void run() {
-                for(;;) {
-                    DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-                    Date dateObject = new Date();
-                    dateTimeColor.setText(dateFormat.format(dateObject));
-                    try {
-                        sleep(1000);
-                    } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, e);
-                    }
-                }
+        final DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+        ActionListener timerListener = new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+                Date date = new Date();
+                String time = timeFormat.format(date);
+                dateTime.setText(dateFormat.format(date));
             }
         };
-        currentTimeColor.start();
+        Timer timer = new Timer(1000, timerListener);
+        // to make sure it doesn't wait one second at the start
+        timer.setInitialDelay(0);
+        timer.start();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton blueBtn;
-    private javax.swing.JLabel dateTimeColor;
+    private javax.swing.JLabel dateTime;
     private javax.swing.JButton greenBtn;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton purpleBtn;

@@ -23,7 +23,8 @@ import javax.swing.JOptionPane;
 
 public class PlayScreenGUI extends javax.swing.JFrame {
    
-    private ColorGameGUI colorGame;
+    private ColorGameGUI colorGame; // To create new Color Game.
+    Thread currentTime;
     private char guessLetter; // User's input.
     private char[] currentAnswer; // User's current answer. Dynamically changes.
     private char[] answer; // Word that is chosed randomly and converted into an array of characters.
@@ -275,12 +276,12 @@ public class PlayScreenGUI extends javax.swing.JFrame {
         colorGame.setScore(getFinalScore());
         colorGame.setVisible(true);
     }
- 
+    
     // method: displayDateTime
     // purpose: display current time and date. Update each second.
     public void displayDateTime() {
        
-        Thread currentTime = new Thread() {
+        currentTime = new Thread() {
             public void run() {
                 for(;;) {
                     DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
@@ -294,7 +295,7 @@ public class PlayScreenGUI extends javax.swing.JFrame {
                 }
             }
         };
-        currentTime.start();
+        currentTime.start(); 
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -601,6 +602,11 @@ public class PlayScreenGUI extends javax.swing.JFrame {
                 buttonSkipMouseClicked(evt);
             }
         });
+        buttonSkip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSkipActionPerformed(evt);
+            }
+        });
         getContentPane().add(buttonSkip);
         buttonSkip.setBounds(10, 10, 75, 33);
 
@@ -889,6 +895,10 @@ public class PlayScreenGUI extends javax.swing.JFrame {
         finalScore = 0;
         startColor();
     }//GEN-LAST:event_buttonSkipMouseClicked
+
+    private void buttonSkipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSkipActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonSkipActionPerformed
  
     // method: main
     // purpose: runs the current screen on its own
