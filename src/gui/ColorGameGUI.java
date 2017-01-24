@@ -18,11 +18,16 @@ import javax.swing.JOptionPane;
 public class ColorGameGUI extends javax.swing.JFrame {
 
     
-    private int finalScore;
+    static int finalScore;
+    private EndScreen endScreen;
+    private PlayScreenGUI playScreen;
     /**
      * Creates new form ColorGameGUI
      */
     public ColorGameGUI(int finalScore) {
+        
+        this.finalScore = finalScore;
+        endScreen = new EndScreen(finalScore);
         initComponents();
     }
 
@@ -36,7 +41,7 @@ public class ColorGameGUI extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         dateTime = new javax.swing.JLabel();
         title = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        redBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(600, 400));
@@ -75,12 +80,13 @@ public class ColorGameGUI extends javax.swing.JFrame {
         getContentPane().add(title);
         title.setBounds(430, 10, 90, 20);
 
-        jButton1.setText("jButton1");
-        jButton1.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/245.jpg"))); // NOI18N
-        getContentPane().add(jButton1);
-        jButton1.setBounds(460, 180, 93, 29);
+        redBtn.setBackground(new java.awt.Color(255, 255, 255));
+        redBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/redSplat.png"))); // NOI18N
+        getContentPane().add(redBtn);
+        redBtn.setBounds(440, 269, 80, 70);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -113,11 +119,32 @@ public class ColorGameGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ColorGameGUI().setVisible(true);
+                new ColorGameGUI(finalScore).setVisible(true);
             }
         });
     }
-        // method: displayDateTime
+    
+    // method: getFinalScore
+    // purpose: return the final score 
+    public int getFinalScore() {
+        return finalScore;
+    }
+    
+    // method: endGame
+    // purpose: change the visibility of the play screen as false and
+    // show the end screen
+    public void endGame() {
+        this.setVisible(false);
+        endScreen.setScore(getFinalScore());
+        endScreen.setVisible(true);
+    }
+    
+    public void setScore(int finalScore) {
+        String displayScore = Integer.toString(finalScore);
+        //scoreLabel.setText(displayScore);
+    }
+    
+    // method: displayDateTime
     // purpose: display current time and date. Update each second.
     public void displayDateTime() {
        
@@ -140,8 +167,8 @@ public class ColorGameGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel dateTime;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton redBtn;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }
