@@ -5,12 +5,15 @@
  */
 package gui;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import static java.lang.Thread.sleep;
 import java.text.DateFormat;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.Random;
+import static javafx.scene.paint.Color.color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
@@ -21,9 +24,15 @@ import javax.swing.Timer;
  */
 public class ColorGameGUI extends javax.swing.JFrame {
 
+    private final String [] COLORS = {"GREEN", "RED", 
+    "BLUE", "YELLOW", "PURPLE"};
+    static String chosenWord;
     static int finalScore;
     private EndScreen endScreen;
     private PlayScreenGUI playScreen;
+    
+    Color[] color;
+    Color chosenColor;
     /**
      * Creates new form ColorGameGUI
      */
@@ -33,6 +42,8 @@ public class ColorGameGUI extends javax.swing.JFrame {
         endScreen = new EndScreen(finalScore);
         displayDateTimeColor();
         initComponents();
+        setWord();
+        setColor();
     }
 
     /**
@@ -42,14 +53,14 @@ public class ColorGameGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         title = new javax.swing.JLabel();
-        blueBtn = new javax.swing.JButton();
         redBtn = new javax.swing.JButton();
         purpleBtn = new javax.swing.JButton();
         greenBtn = new javax.swing.JButton();
         yellowBtn = new javax.swing.JButton();
         dateTime = new javax.swing.JLabel();
+        blueBtn = new javax.swing.JButton();
+        colorWord = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Color Game");
@@ -57,56 +68,38 @@ public class ColorGameGUI extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(600, 400));
         setPreferredSize(new java.awt.Dimension(600, 400));
         setResizable(false);
+        setSize(new java.awt.Dimension(600, 400));
         getContentPane().setLayout(null);
-
-        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
-        jPanel1.setToolTipText("");
-        jPanel1.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        jPanel1.setMaximumSize(new java.awt.Dimension(100, 50));
-        jPanel1.setMinimumSize(new java.awt.Dimension(100, 50));
-        jPanel1.setName(""); // NOI18N
-        jPanel1.setPreferredSize(new java.awt.Dimension(100, 50));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(240, 180, 100, 40);
 
         title.setText("Color Game");
         getContentPane().add(title);
         title.setBounds(430, 10, 90, 20);
 
-        blueBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blueSplat.png"))); // NOI18N
-        blueBtn.setBorderPainted(false);
-        blueBtn.setContentAreaFilled(false);
-        blueBtn.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blackSplat.png"))); // NOI18N
-        getContentPane().add(blueBtn);
-        blueBtn.setBounds(160, 20, 110, 100);
-
         redBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/redSplat.png"))); // NOI18N
+        redBtn.setBorder(null);
         redBtn.setBorderPainted(false);
         redBtn.setContentAreaFilled(false);
         redBtn.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blackSplat.png"))); // NOI18N
         getContentPane().add(redBtn);
         redBtn.setBounds(20, 120, 130, 100);
 
+        purpleBtn.setBackground(null);
+        purpleBtn.setForeground(null);
         purpleBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/purpleSplat.png"))); // NOI18N
+        purpleBtn.setBorder(null);
         purpleBtn.setBorderPainted(false);
         purpleBtn.setContentAreaFilled(false);
         purpleBtn.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blackSplat.png"))); // NOI18N
+        purpleBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                purpleBtnActionPerformed(evt);
+            }
+        });
         getContentPane().add(purpleBtn);
-        purpleBtn.setBounds(410, 80, 130, 100);
+        purpleBtn.setBounds(210, 30, 100, 100);
 
         greenBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/greenSplat.png"))); // NOI18N
+        greenBtn.setBorder(null);
         greenBtn.setBorderPainted(false);
         greenBtn.setContentAreaFilled(false);
         greenBtn.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blackSplat.png"))); // NOI18N
@@ -114,6 +107,7 @@ public class ColorGameGUI extends javax.swing.JFrame {
         greenBtn.setBounds(120, 250, 130, 100);
 
         yellowBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/yellowSplat.png"))); // NOI18N
+        yellowBtn.setBorder(null);
         yellowBtn.setBorderPainted(false);
         yellowBtn.setContentAreaFilled(false);
         yellowBtn.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blackSplat.png"))); // NOI18N
@@ -124,9 +118,37 @@ public class ColorGameGUI extends javax.swing.JFrame {
         getContentPane().add(dateTime);
         dateTime.setBounds(430, 30, 140, 20);
 
+        blueBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blueSplat.png"))); // NOI18N
+        blueBtn.setBorder(null);
+        blueBtn.setBorderPainted(false);
+        blueBtn.setContentAreaFilled(false);
+        blueBtn.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blackSplat.png"))); // NOI18N
+        blueBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                blueBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(blueBtn);
+        blueBtn.setBounds(410, 80, 130, 100);
+
+        colorWord.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        colorWord.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        colorWord.setText("Color");
+        colorWord.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(colorWord);
+        colorWord.setBounds(170, 160, 230, 50);
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void purpleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purpleBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_purpleBtnActionPerformed
+
+    private void blueBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blueBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_blueBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -168,6 +190,32 @@ public class ColorGameGUI extends javax.swing.JFrame {
     public int getFinalScore() {
         return finalScore;
     }
+        
+    // method: chooseWord
+    // purpose: Randomly choose a word from WORD_BANK 
+    public String chooseWord() {
+        Random rand = new Random();
+        int randomIndex = rand.nextInt(5);
+        return chosenWord = COLORS[randomIndex];
+    }
+    
+    public void setWord() {
+        colorWord.setText(chooseWord());
+    }
+    
+    public void setColor() {
+        color = new Color [5];
+        color[0] = new Color(255, 0, 51); //red
+        color[1] = new Color(51, 51, 255); //blue
+        color[2] = new Color(0, 255, 0); //green
+        color[3] = new Color(255, 255, 0); //yellow
+        color[4] = new Color(204, 0, 204); //purple
+        
+        Random rand = new Random();
+        int randomIndex = rand.nextInt(5);
+        chosenColor = color[randomIndex];
+        colorWord.setForeground(chosenColor);
+    }
     
     // method: endGame
     // purpose: change the visibility of the play screen as false and
@@ -205,9 +253,9 @@ public class ColorGameGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton blueBtn;
+    private javax.swing.JLabel colorWord;
     private javax.swing.JLabel dateTime;
     private javax.swing.JButton greenBtn;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton purpleBtn;
     private javax.swing.JButton redBtn;
     private javax.swing.JLabel title;
