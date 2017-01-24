@@ -66,7 +66,7 @@ public class ColorGameGUI extends javax.swing.JFrame {
         setTitle("Color Game");
         setMaximumSize(new java.awt.Dimension(600, 400));
         setMinimumSize(new java.awt.Dimension(600, 400));
-        setPreferredSize(new java.awt.Dimension(600, 400));
+        setPreferredSize(null);
         setResizable(false);
         setSize(new java.awt.Dimension(600, 400));
         getContentPane().setLayout(null);
@@ -80,12 +80,17 @@ public class ColorGameGUI extends javax.swing.JFrame {
         redBtn.setBorderPainted(false);
         redBtn.setContentAreaFilled(false);
         redBtn.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blackSplat.png"))); // NOI18N
+        redBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                redBtnActionPerformed(evt);
+            }
+        });
         getContentPane().add(redBtn);
-        redBtn.setBounds(20, 120, 130, 100);
+        redBtn.setBounds(20, 120, 100, 100);
+        redBtn.getAccessibleContext().setAccessibleName("RED");
 
-        purpleBtn.setBackground(null);
-        purpleBtn.setForeground(null);
         purpleBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/purpleSplat.png"))); // NOI18N
+        purpleBtn.setToolTipText("");
         purpleBtn.setBorder(null);
         purpleBtn.setBorderPainted(false);
         purpleBtn.setContentAreaFilled(false);
@@ -97,22 +102,35 @@ public class ColorGameGUI extends javax.swing.JFrame {
         });
         getContentPane().add(purpleBtn);
         purpleBtn.setBounds(210, 30, 100, 100);
+        purpleBtn.getAccessibleContext().setAccessibleName("PURPLE");
 
         greenBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/greenSplat.png"))); // NOI18N
         greenBtn.setBorder(null);
         greenBtn.setBorderPainted(false);
         greenBtn.setContentAreaFilled(false);
         greenBtn.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blackSplat.png"))); // NOI18N
+        greenBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                greenBtnActionPerformed(evt);
+            }
+        });
         getContentPane().add(greenBtn);
-        greenBtn.setBounds(120, 250, 130, 100);
+        greenBtn.setBounds(120, 250, 100, 100);
+        greenBtn.getAccessibleContext().setAccessibleName("GREEN");
 
         yellowBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/yellowSplat.png"))); // NOI18N
         yellowBtn.setBorder(null);
         yellowBtn.setBorderPainted(false);
         yellowBtn.setContentAreaFilled(false);
         yellowBtn.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blackSplat.png"))); // NOI18N
+        yellowBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                yellowBtnActionPerformed(evt);
+            }
+        });
         getContentPane().add(yellowBtn);
-        yellowBtn.setBounds(340, 240, 130, 100);
+        yellowBtn.setBounds(340, 240, 100, 100);
+        yellowBtn.getAccessibleContext().setAccessibleName("YELLOW");
 
         dateTime.setText("Date and Time");
         getContentPane().add(dateTime);
@@ -129,7 +147,8 @@ public class ColorGameGUI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(blueBtn);
-        blueBtn.setBounds(410, 80, 130, 100);
+        blueBtn.setBounds(410, 80, 100, 100);
+        blueBtn.getAccessibleContext().setAccessibleName("BLUE");
 
         colorWord.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         colorWord.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -143,12 +162,24 @@ public class ColorGameGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void purpleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purpleBtnActionPerformed
-        // TODO add your handling code here:
+        gameCycle(Color.MAGENTA);
     }//GEN-LAST:event_purpleBtnActionPerformed
 
     private void blueBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blueBtnActionPerformed
-        // TODO add your handling code here:
+        gameCycle(Color.BLUE);
     }//GEN-LAST:event_blueBtnActionPerformed
+
+    private void redBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redBtnActionPerformed
+        gameCycle(Color.RED);
+    }//GEN-LAST:event_redBtnActionPerformed
+
+    private void greenBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_greenBtnActionPerformed
+        gameCycle(Color.GREEN);
+    }//GEN-LAST:event_greenBtnActionPerformed
+
+    private void yellowBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yellowBtnActionPerformed
+        gameCycle(Color.YELLOW);
+    }//GEN-LAST:event_yellowBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,11 +236,11 @@ public class ColorGameGUI extends javax.swing.JFrame {
     
     public void setColor() {
         color = new Color [5];
-        color[0] = new Color(255, 0, 51); //red
-        color[1] = new Color(51, 51, 255); //blue
-        color[2] = new Color(0, 255, 0); //green
-        color[3] = new Color(255, 255, 0); //yellow
-        color[4] = new Color(204, 0, 204); //purple
+        color[0] = Color.RED; //red
+        color[1] = Color.BLUE; //blue
+        color[2] = Color.GREEN; //green
+        color[3] = Color.YELLOW; //yellow
+        color[4] = Color.MAGENTA; //purple
         
         Random rand = new Random();
         int randomIndex = rand.nextInt(5);
@@ -230,7 +261,16 @@ public class ColorGameGUI extends javax.swing.JFrame {
         String displayScore = Integer.toString(finalScore);
         //scoreLabel.setText(displayScore);
     }
+    // method: gameCycle
+    // purpose: 
+    public void gameCycle(Color color) {
         
+        if (color == chosenColor){
+            finalScore = finalScore + 100;
+            setWord();
+            setColor();
+        }
+    }
     // method: displayDateTime
     // purpose: display current time and date. Update each second.
     public void displayDateTimeColor() {

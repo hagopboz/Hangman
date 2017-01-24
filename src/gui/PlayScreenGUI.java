@@ -357,6 +357,7 @@ public class PlayScreenGUI extends javax.swing.JFrame {
         setTitle("Hangman");
         setMaximumSize(new java.awt.Dimension(600, 400));
         setMinimumSize(new java.awt.Dimension(600, 400));
+        setPreferredSize(null);
         setResizable(false);
         setSize(new java.awt.Dimension(600, 400));
         getContentPane().setLayout(null);
