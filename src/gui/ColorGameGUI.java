@@ -7,8 +7,8 @@ package gui;
 
 import static java.lang.Thread.sleep;
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
 /**

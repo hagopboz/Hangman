@@ -22,8 +22,8 @@ import java.util.Random;
 import javax.swing.JOptionPane;
 
 public class PlayScreenGUI extends javax.swing.JFrame {
-    
-    private EndScreen endScreen;
+   
+    private ColorGameGUI colorGame;
     private char guessLetter; // User's input.
     private char[] currentAnswer; // User's current answer. Dynamically changes.
     private char[] answer; // Word that is chosed randomly and converted into an array of characters.
@@ -45,7 +45,7 @@ public class PlayScreenGUI extends javax.swing.JFrame {
         loseCount = 0;
         currentAnswer = new char[chosenWord.length()];
         answer = new char[chosenWord.length()];
-        endScreen = new EndScreen(finalScore);
+        colorGame = new ColorGameGUI(finalScore);
         initComponents();
         displayDateTime();
         startGame();
@@ -264,16 +264,16 @@ public class PlayScreenGUI extends javax.swing.JFrame {
     // either the user guessed 6-times wrong or guessed the correct word.
     public void checkEndGame() {
         if (loseCount >= 6 || checkAnswers())
-            endGame();
+            startColor();
     }
     
-    // method: endGame
+    // method: startColor
     // purpose: change the visibility of the play screen as false and
-    // show the end screen
-    public void endGame() {
+    // show the Color Game Gui
+    public void startColor() {
         this.setVisible(false);
-        endScreen.setScore(getFinalScore());
-        endScreen.setVisible(true);
+        colorGame.setScore(getFinalScore());
+        colorGame.setVisible(true);
     }
  
     // method: displayDateTime
@@ -353,6 +353,7 @@ public class PlayScreenGUI extends javax.swing.JFrame {
         score = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Hangman");
         setMaximumSize(new java.awt.Dimension(600, 400));
         setMinimumSize(new java.awt.Dimension(600, 400));
         setResizable(false);
@@ -886,7 +887,7 @@ public class PlayScreenGUI extends javax.swing.JFrame {
     // purpose: sets the final score to 0 and ends the game
     private void buttonSkipMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSkipMouseClicked
         finalScore = 0;
-        endGame();
+        startColor();
     }//GEN-LAST:event_buttonSkipMouseClicked
  
     // method: main
