@@ -249,9 +249,11 @@ public class ColorGameGUI extends javax.swing.JFrame {
         getContentPane().add(colorWord);
         colorWord.setBounds(180, 10, 230, 50);
 
-        scoreLabel.setText("score");
+        scoreLabel.setBackground(null);
+        scoreLabel.setForeground(null);
+        scoreLabel.setEnabled(false);
         getContentPane().add(scoreLabel);
-        scoreLabel.setBounds(540, 50, 37, 20);
+        scoreLabel.setBounds(430, 50, 0, 0);
 
         pack();
         setLocationRelativeTo(null);
