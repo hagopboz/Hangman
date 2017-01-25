@@ -269,6 +269,9 @@ public class ColorGameGUI extends javax.swing.JFrame {
             finalScore = finalScore + 100;
             setWord();
             setColor();
+        } else {
+            setWord();
+            setColor();
         }
     }
     // method: displayDateTime
