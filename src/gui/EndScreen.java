@@ -85,7 +85,7 @@ public class EndScreen extends javax.swing.JFrame {
     // purpose: sets the player's final score and displays it
     public void setScore(int finalScore) {
         String displayScore = Integer.toString(finalScore);
-        scoreLabel.setText(displayScore);
+        scoreValue.setText(displayScore);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonEnd;
