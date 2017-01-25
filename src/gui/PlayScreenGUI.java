@@ -7,8 +7,8 @@
 *         Dylan Nguyen
 * class: CS 245 – Graphical User Interfaces
 *
-* assignment: program 1.0
-* date last modified: 1/16/2016
+* assignment: program 1.1
+* date last modified: 1/25/2016
 *
 * purpose: This program displays the play screen of the hangman
 * game and acts as the game engine.
@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
 
 public class PlayScreenGUI extends javax.swing.JFrame {
    
-    private ColorGameGUI colorGame; // To create new Color Game.
+    //private ColorGameGUI colorGame; // To create new Color Game.
     Thread currentTime;
     private char guessLetter; // User's input.
     private char[] currentAnswer; // User's current answer. Dynamically changes.
@@ -46,7 +46,7 @@ public class PlayScreenGUI extends javax.swing.JFrame {
         loseCount = 0;
         currentAnswer = new char[chosenWord.length()];
         answer = new char[chosenWord.length()];
-        colorGame = new ColorGameGUI(finalScore);
+        //colorGame = new ColorGameGUI(finalScore);
         initComponents();
         displayDateTime();
         startGame();
@@ -272,6 +272,7 @@ public class PlayScreenGUI extends javax.swing.JFrame {
     // purpose: change the visibility of the play screen as false and
     // show the Color Game Gui
     public void startColor() {
+        ColorGameGUI colorGame = new ColorGameGUI(finalScore);
         this.setVisible(false);
         colorGame.setScore(getFinalScore());
         colorGame.setVisible(true);
@@ -613,11 +614,11 @@ public class PlayScreenGUI extends javax.swing.JFrame {
 
         title.setText("HANGMAN");
         getContentPane().add(title);
-        title.setBounds(430, 10, 90, 14);
+        title.setBounds(430, 10, 90, 16);
 
         dateTime.setText("Date and Time");
         getContentPane().add(dateTime);
-        dateTime.setBounds(430, 30, 150, 14);
+        dateTime.setBounds(430, 30, 150, 16);
 
         leftArm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/leftarm.png"))); // NOI18N
         leftArm.setText("jLabel3");

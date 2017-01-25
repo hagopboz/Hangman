@@ -10,15 +10,15 @@ package gui;
 * 
 * Class: CS 245 – Programming Graphical User Interfaces
 *
-* assignment: program 1.0
-* date last modified: 1/16/2017
+* assignment: program 1.1
+* date last modified: 1/25/2017
 *
 * purpose: This is the main menu. It has three buttons. Play button takes
 * the user to play a hangman game. High Score button shows top 5 scores of the
 * game. Credits button shows the creators of the program.
 *
 ****************************************************************/
-
+import highscore.*;
 
 public class MenuGUI extends javax.swing.JFrame {
 
@@ -114,8 +114,12 @@ public class MenuGUI extends javax.swing.JFrame {
     // method: highScoreButtonActionPerformed
     // purpose: disables the current scren and enables the High Score Screen
     private void highScoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_highScoreButtonActionPerformed
+        ScoreManager sm = new ScoreManager();
+        String highscores = sm.toString();
         this.setVisible(false);
-        new HighScoreGUI().setVisible(true);
+        HighScoreGUI hs = new HighScoreGUI(highscores);
+        hs.printList();
+        hs.setVisible(true);
     }//GEN-LAST:event_highScoreButtonActionPerformed
 
     // method: creditsButtonActionsPerformed
