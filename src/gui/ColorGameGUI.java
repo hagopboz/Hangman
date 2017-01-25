@@ -27,7 +27,8 @@ public class ColorGameGUI extends javax.swing.JFrame {
     private final String [] COLORS = {"GREEN", "RED", 
     "BLUE", "YELLOW", "PURPLE"}; //possible words that can be printed.
     static String chosenWord; //Current word being displayed.
-    static int finalScore;//Score of the game.
+    static int finalScore;//Score of the total game.
+    static int scoreCount;//Score of color game.
     private EndScreen endScreen; //Screen to move on to.
     private PlayScreenGUI playScreen;//Screen it came from.
     private int count = 0;//Count to see how many turns have passed.
@@ -164,7 +165,7 @@ public class ColorGameGUI extends javax.swing.JFrame {
 
         title.setText("Color Game");
         getContentPane().add(title);
-        title.setBounds(430, 10, 90, 14);
+        title.setBounds(430, 10, 90, 20);
 
         redBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/redSplat.png"))); // NOI18N
         redBtn.setBorder(null);
@@ -225,7 +226,7 @@ public class ColorGameGUI extends javax.swing.JFrame {
 
         dateTime.setText("Date and Time");
         getContentPane().add(dateTime);
-        dateTime.setBounds(430, 30, 140, 14);
+        dateTime.setBounds(430, 30, 140, 20);
 
         blueBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blueSplat.png"))); // NOI18N
         blueBtn.setBorder(null);
@@ -250,7 +251,7 @@ public class ColorGameGUI extends javax.swing.JFrame {
 
         scoreLabel.setText("score");
         getContentPane().add(scoreLabel);
-        scoreLabel.setBounds(540, 50, 26, 14);
+        scoreLabel.setBounds(540, 50, 37, 20);
 
         pack();
         setLocationRelativeTo(null);
@@ -314,7 +315,7 @@ public class ColorGameGUI extends javax.swing.JFrame {
     // method: getFinalScore
     // purpose: return the final score 
     public int getFinalScore() {
-        return finalScore;
+        return finalScore + scoreCount;
     }
         
     // method: chooseWord
@@ -353,6 +354,7 @@ public class ColorGameGUI extends javax.swing.JFrame {
         this.setVisible(false);
         endScreen.setScore(getFinalScore());
         endScreen.setVisible(true);
+        scoreCount = 0;
     }
     // method: setScore
     // purpose: Sets the score in the JLabel
@@ -365,8 +367,9 @@ public class ColorGameGUI extends javax.swing.JFrame {
     // and it checks if the user's guess is correct and changes the word and 
     // color while adding to the score.
     public void gameCycle(Color color) {
+        finalScore = Integer.parseInt(scoreLabel.getText());
         if (color == chosenColor){
-            finalScore = finalScore + 100;
+            scoreCount = scoreCount + 100;
             setWord();
             setColor();
             //setScore(finalScore);
