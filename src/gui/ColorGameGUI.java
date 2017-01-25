@@ -25,16 +25,14 @@ import javax.swing.Timer;
 public class ColorGameGUI extends javax.swing.JFrame {
 
     private final String [] COLORS = {"GREEN", "RED", 
-    "BLUE", "YELLOW", "PURPLE"};
-    static String chosenWord;
-    static int finalScore;
-    private EndScreen endScreen;
-    private PlayScreenGUI playScreen;
-    static boolean total = true;
-    static int count = 0;
-    
-    Color[] color;
-    Color chosenColor;
+    "BLUE", "YELLOW", "PURPLE"}; //possible words that can be printed.
+    static String chosenWord; //Current word being displayed.
+    static int finalScore;//Score of the game.
+    private EndScreen endScreen; //Screen to move on to.
+    private PlayScreenGUI playScreen;//Screen it came from.
+    static int count = 0;//Count to see how many turns have passed.
+    Color[] color;//Creates an array of colors for the color of the word.
+    Color chosenColor;//Color of current word being displayed.
     /**
      * Creates new form ColorGameGUI
      */
@@ -236,11 +234,14 @@ public class ColorGameGUI extends javax.swing.JFrame {
         int randomIndex = rand.nextInt(5);
         return chosenWord = COLORS[randomIndex];
     }
-    
+    // method: setWord
+    // purpose: Changes the label to the new word generated.
     public void setWord() {
         colorWord.setText(chooseWord());
     }
-    
+    // method: setColor
+    // purpose: Sets the colors in the array, randomly selects one, and changes 
+    // forground of the Color word to the color generated.
     public void setColor() {
         color = new Color [5];
         color[0] = Color.RED; //red
@@ -263,24 +264,27 @@ public class ColorGameGUI extends javax.swing.JFrame {
         endScreen.setScore(getFinalScore());
         endScreen.setVisible(true);
     }
-    
+    // method: setScore
+    // purpose: Sets the score in the JLabel
     public void setScore(int finalScore) {
         String displayScore = Integer.toString(finalScore);
         scoreLabel.setText(displayScore);
     }
     // method: gameCycle
-    // purpose: 
+    // purpose: This is the game engine that takes the color word and the color
+    // and it checks if the user's guess is correct and changes the word and 
+    // color while adding to the score.
     public void gameCycle(Color color) {
         if (color == chosenColor){
             finalScore = finalScore + 100;
             setWord();
             setColor();
-            setScore(finalScore);
+            //setScore(finalScore);
             count = count+1;
         } else {
             setWord();
             setColor();
-            setScore(finalScore);
+            //setScore(finalScore);
             count = count+1;
         }
         if (count == 5) {
