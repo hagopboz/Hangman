@@ -1,8 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/***************************************************************
+* file: ColorGameGUI.java
+* author: Hagop Bowazoglanian
+*         John Vincent Canalita
+*         Eugene Lee
+*         Seungyun Lee
+*         Dylan Nguyen
+* 
+* Class: CS 245 – Programming Graphical User Interfaces
+*
+* assignment: program 1.1
+* date last modified: 1/25/2017
+*
+* purpose: Color Game graphical user interface.
+*
+****************************************************************/
 package gui;
 
 import java.awt.Color;
@@ -18,10 +29,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
-/**
- *
- * @author ELEE
- */
 public class ColorGameGUI extends javax.swing.JFrame {
 
     private final String [] COLORS = {"GREEN", "RED", 
@@ -29,7 +36,7 @@ public class ColorGameGUI extends javax.swing.JFrame {
     static String chosenWord; //Current word being displayed.
     static int finalScore;//Score of the total game.
     static int scoreCount;//Score of color game.
-    private EndScreen endScreen; //Screen to move on to.
+    // private EndScreen endScreen; //Screen to move on to.
     private PlayScreenGUI playScreen;//Screen it came from.
     private int count = 0;//Count to see how many turns have passed.
     Color[] color;//Creates an array of colors for the color of the word.
@@ -41,7 +48,7 @@ public class ColorGameGUI extends javax.swing.JFrame {
     public ColorGameGUI(int finalScore) {
         possiblePositions = new boolean[3][5];
         this.finalScore = finalScore;
-        endScreen = new EndScreen(finalScore);
+        // endScreen = new EndScreen(finalScore);
         displayDateTimeColor();
         initializePositions();
         initComponents();
@@ -165,7 +172,7 @@ public class ColorGameGUI extends javax.swing.JFrame {
 
         title.setText("Color Game");
         getContentPane().add(title);
-        title.setBounds(430, 10, 90, 20);
+        title.setBounds(430, 10, 90, 16);
 
         redBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/redSplat.png"))); // NOI18N
         redBtn.setBorder(null);
@@ -226,7 +233,7 @@ public class ColorGameGUI extends javax.swing.JFrame {
 
         dateTime.setText("Date and Time");
         getContentPane().add(dateTime);
-        dateTime.setBounds(430, 30, 140, 20);
+        dateTime.setBounds(430, 30, 140, 16);
 
         blueBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blueSplat.png"))); // NOI18N
         blueBtn.setBorder(null);
@@ -249,8 +256,6 @@ public class ColorGameGUI extends javax.swing.JFrame {
         getContentPane().add(colorWord);
         colorWord.setBounds(180, 10, 230, 50);
 
-        scoreLabel.setBackground(null);
-        scoreLabel.setForeground(null);
         scoreLabel.setEnabled(false);
         getContentPane().add(scoreLabel);
         scoreLabel.setBounds(430, 50, 0, 0);
@@ -353,8 +358,9 @@ public class ColorGameGUI extends javax.swing.JFrame {
     // purpose: change the visibility of the play screen as false and
     // show the end screen
     public void endGame() {
+        EndScreen endScreen = new EndScreen(getFinalScore());
         this.setVisible(false);
-        endScreen.setScore(getFinalScore());
+        endScreen.setScore(getFinalScore()); // changed to getFinalScore() instead of finalScore to properly pass argument
         endScreen.setVisible(true);
         scoreCount = 0;
     }

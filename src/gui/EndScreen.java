@@ -8,8 +8,8 @@
 * 
 * Class: CS 245 – Programming Graphical User Interfaces
 *
-* assignment: program 1.0
-* date last modified: 1/16/2017
+* assignment: program 1.1
+* date last modified: 1/25/2017
 *
 * purpose: Creates the End screen page for the Hangman game,
 *          showing the final score of the player when the game
@@ -17,6 +17,8 @@
 *
 ****************************************************************/
 package gui;
+
+import highscore.*;
 
 public class EndScreen extends javax.swing.JFrame {
 
@@ -45,6 +47,8 @@ public class EndScreen extends javax.swing.JFrame {
         scoreLabel = new javax.swing.JLabel();
         scoreValue = new javax.swing.JLabel();
         buttonEnd = new javax.swing.JButton();
+        nameField = new javax.swing.JTextField();
+        saveButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -70,6 +74,20 @@ public class EndScreen extends javax.swing.JFrame {
         getContentPane().add(buttonEnd);
         buttonEnd.setBounds(20, 350, 80, 30);
 
+        nameField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        nameField.setText("NAME");
+        getContentPane().add(nameField);
+        nameField.setBounds(260, 190, 80, 30);
+
+        saveButton.setText("Save");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(saveButton);
+        saveButton.setBounds(260, 220, 80, 30);
+
         setSize(new java.awt.Dimension(616, 439));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -81,14 +99,29 @@ public class EndScreen extends javax.swing.JFrame {
         new MenuGUI().setVisible(true); 
     }//GEN-LAST:event_buttonEndMouseClicked
 
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        ScoreManager sm = new ScoreManager();
+        sm.addScore(getName(), finalScore);
+        saveButton.setEnabled(false);
+    }//GEN-LAST:event_saveButtonActionPerformed
+
     // method: setScore
     // purpose: sets the player's final score and displays it
     public void setScore(int finalScore) {
         String displayScore = Integer.toString(finalScore);
         scoreValue.setText(displayScore);
     }
+    
+    // method: getName
+    // purpose: returns name of user
+    public String getName() {
+        String name = nameField.getText();
+        return name;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonEnd;
+    private javax.swing.JTextField nameField;
+    private javax.swing.JButton saveButton;
     private javax.swing.JLabel scoreLabel;
     private javax.swing.JLabel scoreValue;
     // End of variables declaration//GEN-END:variables

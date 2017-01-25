@@ -10,18 +10,23 @@ package gui;
 * 
 * Class: CS 245 – Programming Graphical User Interfaces
 *
-* assignment: program 1.0
-* date last modified: 1/16/2017
+* assignment: program 1.1
+* date last modified: 1/25/2017
 *
 * purpose: Creates the High Score GUI for the Hangman game,
 *          showing the high scores of the game with its player 
 *
 ****************************************************************/
+import highscore.*;
+import java.util.ArrayList;
+
 public class HighScoreGUI extends javax.swing.JFrame {
     
+    static String scoreList;
     // method: HighScoreGUI
     // purpose: constructor for the class
-    public HighScoreGUI() {
+    public HighScoreGUI(String scoreList) {
+        this.scoreList = scoreList;
         initComponents();
     }
 
@@ -35,12 +40,8 @@ public class HighScoreGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         title = new javax.swing.JLabel();
-        highScore1 = new javax.swing.JLabel();
-        highScore2 = new javax.swing.JLabel();
-        highScore3 = new javax.swing.JLabel();
-        highScore4 = new javax.swing.JLabel();
-        highScore5 = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
+        highscoreTextArea = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(600, 400));
@@ -54,36 +55,6 @@ public class HighScoreGUI extends javax.swing.JFrame {
         getContentPane().add(title);
         title.setBounds(215, 50, 170, 35);
 
-        highScore1.setFont(new java.awt.Font("Comic Sans MS", 0, 13)); // NOI18N
-        highScore1.setText("ABC.....00000");
-        highScore1.setPreferredSize(new java.awt.Dimension(86, 16));
-        getContentPane().add(highScore1);
-        highScore1.setBounds(257, 100, 86, 16);
-
-        highScore2.setFont(new java.awt.Font("Comic Sans MS", 0, 13)); // NOI18N
-        highScore2.setText("ABC.....00000");
-        highScore2.setPreferredSize(new java.awt.Dimension(86, 16));
-        getContentPane().add(highScore2);
-        highScore2.setBounds(257, 130, 86, 16);
-
-        highScore3.setFont(new java.awt.Font("Comic Sans MS", 0, 13)); // NOI18N
-        highScore3.setText("ABC.....00000");
-        highScore3.setPreferredSize(new java.awt.Dimension(86, 16));
-        getContentPane().add(highScore3);
-        highScore3.setBounds(257, 160, 86, 16);
-
-        highScore4.setFont(new java.awt.Font("Comic Sans MS", 0, 13)); // NOI18N
-        highScore4.setText("ABC.....00000");
-        highScore4.setPreferredSize(new java.awt.Dimension(86, 16));
-        getContentPane().add(highScore4);
-        highScore4.setBounds(257, 190, 86, 16);
-
-        highScore5.setFont(new java.awt.Font("Comic Sans MS", 0, 13)); // NOI18N
-        highScore5.setText("ABC.....00000");
-        highScore5.setPreferredSize(new java.awt.Dimension(86, 16));
-        getContentPane().add(highScore5);
-        highScore5.setBounds(257, 220, 86, 16);
-
         backButton.setText("Back");
         backButton.setPreferredSize(new java.awt.Dimension(75, 33));
         backButton.addActionListener(new java.awt.event.ActionListener() {
@@ -93,6 +64,15 @@ public class HighScoreGUI extends javax.swing.JFrame {
         });
         getContentPane().add(backButton);
         backButton.setBounds(3, 335, 75, 33);
+
+        highscoreTextArea.setBackground(new java.awt.Color(238, 238, 238));
+        highscoreTextArea.setColumns(20);
+        highscoreTextArea.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        highscoreTextArea.setRows(5);
+        highscoreTextArea.setDragEnabled(false);
+        highscoreTextArea.setEnabled(false);
+        getContentPane().add(highscoreTextArea);
+        highscoreTextArea.setBounds(180, 100, 240, 220);
 
         pack();
         setLocationRelativeTo(null);
@@ -112,20 +92,21 @@ public class HighScoreGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HighScoreGUI().setVisible(true);
+                new HighScoreGUI(scoreList).setVisible(true);
             }
         });
         
         
     }
-
+    // method: printList
+    //purpose: prints the scoreList (toString Arraylist of highscores)
+    //         string to textArea
+    public void printList() {
+        highscoreTextArea.setText(scoreList);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
-    private javax.swing.JLabel highScore1;
-    private javax.swing.JLabel highScore2;
-    private javax.swing.JLabel highScore3;
-    private javax.swing.JLabel highScore4;
-    private javax.swing.JLabel highScore5;
+    private javax.swing.JTextArea highscoreTextArea;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }

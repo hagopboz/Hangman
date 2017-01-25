@@ -10,7 +10,7 @@ package gui;
 * 
 * Class: CS 245 – Programming Graphical User Interfaces
 *
-* assignment: program 1.0
+* assignment: program 1.1
 * date last modified: 1/16/2017
 *
 * purpose: Creates the Credits page for the Hangman game, showing
