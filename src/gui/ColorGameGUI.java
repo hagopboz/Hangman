@@ -30,6 +30,8 @@ public class ColorGameGUI extends javax.swing.JFrame {
     static int finalScore;
     private EndScreen endScreen;
     private PlayScreenGUI playScreen;
+    static boolean total = true;
+    static int count = 0;
     
     Color[] color;
     Color chosenColor;
@@ -61,6 +63,7 @@ public class ColorGameGUI extends javax.swing.JFrame {
         dateTime = new javax.swing.JLabel();
         blueBtn = new javax.swing.JButton();
         colorWord = new javax.swing.JLabel();
+        scoreLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Color Game");
@@ -156,6 +159,10 @@ public class ColorGameGUI extends javax.swing.JFrame {
         colorWord.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         getContentPane().add(colorWord);
         colorWord.setBounds(170, 160, 230, 50);
+
+        scoreLabel.setText("score");
+        getContentPane().add(scoreLabel);
+        scoreLabel.setBounds(520, 220, 37, 20);
 
         pack();
         setLocationRelativeTo(null);
@@ -259,19 +266,25 @@ public class ColorGameGUI extends javax.swing.JFrame {
     
     public void setScore(int finalScore) {
         String displayScore = Integer.toString(finalScore);
-        //scoreLabel.setText(displayScore);
+        scoreLabel.setText(displayScore);
     }
     // method: gameCycle
     // purpose: 
     public void gameCycle(Color color) {
-        
         if (color == chosenColor){
             finalScore = finalScore + 100;
             setWord();
             setColor();
+            setScore(finalScore);
+            count = count+1;
         } else {
             setWord();
             setColor();
+            setScore(finalScore);
+            count = count+1;
+        }
+        if (count == 5) {
+            endGame();
         }
     }
     // method: displayDateTime
@@ -301,6 +314,7 @@ public class ColorGameGUI extends javax.swing.JFrame {
     private javax.swing.JButton greenBtn;
     private javax.swing.JButton purpleBtn;
     private javax.swing.JButton redBtn;
+    private javax.swing.JLabel scoreLabel;
     private javax.swing.JLabel title;
     private javax.swing.JButton yellowBtn;
     // End of variables declaration//GEN-END:variables
