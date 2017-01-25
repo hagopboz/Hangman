@@ -30,7 +30,7 @@ public class ColorGameGUI extends javax.swing.JFrame {
     static int finalScore;//Score of the game.
     private EndScreen endScreen; //Screen to move on to.
     private PlayScreenGUI playScreen;//Screen it came from.
-    static int count = 0;//Count to see how many turns have passed.
+    private int count = 0;//Count to see how many turns have passed.
     Color[] color;//Creates an array of colors for the color of the word.
     Color chosenColor;//Color of current word being displayed.
     private boolean[][] possiblePositions; //possible positions that buttons can be placed.
