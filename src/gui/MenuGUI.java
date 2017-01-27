@@ -19,12 +19,42 @@ package gui;
 *
 ****************************************************************/
 import highscore.*;
+import other.*;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import javax.swing.AbstractAction;
+import javax.swing.JComponent;
+import javax.swing.KeyStroke;
 
 public class MenuGUI extends javax.swing.JFrame {
 
     // method: MenuGUI
     // purpose: constructor for the class
     public MenuGUI() {
+        
+        // Shows Info Frame when F1 is pressed
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+            KeyStroke.getKeyStroke(KeyEvent.VK_F1,0), "Info");
+        getRootPane().getActionMap().put("Info", new AbstractAction(){ //$NON-NLS-1$
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                Info info = new Info();
+            }
+        });
+        
+        // Exits program when ESC key is pressed
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+            KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE,0), "Exit");
+        getRootPane().getActionMap().put("Exit", new AbstractAction(){ //$NON-NLS-1$
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                System.exit(0);
+            }
+        });
+        
         initComponents();
         setVisible(true);
     }
@@ -52,6 +82,11 @@ public class MenuGUI extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(600, 400));
         setPreferredSize(new java.awt.Dimension(600, 400));
         setResizable(false);
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         playButton.setBackground(new java.awt.Color(255, 255, 153));
@@ -128,6 +163,10 @@ public class MenuGUI extends javax.swing.JFrame {
         this.setVisible(false);
         new CreditsGUI().setVisible(true);
     }//GEN-LAST:event_creditsButtonActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        
+    }//GEN-LAST:event_formKeyPressed
 
     // method: main
     // purpose: runs the current screen on its own
