@@ -8,10 +8,15 @@ package gui;
 import static gui.ColorGameGUI.finalScore;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.AbstractAction;
+import javax.swing.JComponent;
+import javax.swing.KeyStroke;
 import javax.swing.Timer;
+import other.Info;
 
 /**
  *
@@ -25,6 +30,29 @@ public class SudokuGUI extends javax.swing.JFrame {
      * Creates new form SudokuGUI
      */
     public SudokuGUI(int finalScore) {
+        
+        // Shows Info Frame when F1 is pressed
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+            KeyStroke.getKeyStroke(KeyEvent.VK_F1,0), "Info");
+        getRootPane().getActionMap().put("Info", new AbstractAction(){ //$NON-NLS-1$
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                Info info = new Info();
+            }
+        });
+        
+        // Exits program when ESC key is pressed
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+            KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE,0), "Exit");
+        getRootPane().getActionMap().put("Exit", new AbstractAction(){ //$NON-NLS-1$
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                System.exit(0);
+            }
+        });
+        
         displayDateTimeSudoku();
         initComponents();
     }
@@ -217,7 +245,7 @@ public class SudokuGUI extends javax.swing.JFrame {
 
         scoreLabel.setText("Score");
         getContentPane().add(scoreLabel);
-        scoreLabel.setBounds(440, 60, 39, 20);
+        scoreLabel.setBounds(440, 60, 27, 14);
 
         title.setText("Sudoku");
         title.setPreferredSize(new java.awt.Dimension(50, 20));
@@ -226,7 +254,7 @@ public class SudokuGUI extends javax.swing.JFrame {
 
         dateTime.setText("Date and Time");
         getContentPane().add(dateTime);
-        dateTime.setBounds(440, 40, 140, 20);
+        dateTime.setBounds(440, 40, 140, 14);
 
         btn00.setBackground(java.awt.Color.black);
         btn00.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N

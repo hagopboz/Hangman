@@ -1,5 +1,12 @@
 package gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import javax.swing.AbstractAction;
+import javax.swing.JComponent;
+import javax.swing.KeyStroke;
+import other.Info;
+
 /***************************************************************
 * file: CreditsGUI.java
 * author: Hagop Bowazoglanian
@@ -23,7 +30,28 @@ public class CreditsGUI extends javax.swing.JFrame {
     
     // method: CreditsGUI
     // purpose: initializes the GUI for the Credits page
-    public CreditsGUI() {  
+    public CreditsGUI() {
+        // Shows Info Frame when F1 is pressed
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+            KeyStroke.getKeyStroke(KeyEvent.VK_F1,0), "Info");
+        getRootPane().getActionMap().put("Info", new AbstractAction(){ //$NON-NLS-1$
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                Info info = new Info();
+            }
+        });
+        
+        // Exits program when ESC key is pressed
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+            KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE,0), "Exit");
+        getRootPane().getActionMap().put("Exit", new AbstractAction(){ //$NON-NLS-1$
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                System.exit(0);
+            }
+        });
         initComponents();
     }
 

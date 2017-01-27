@@ -18,7 +18,13 @@ package gui;
 *
 ****************************************************************/
 import highscore.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import javax.swing.AbstractAction;
+import javax.swing.JComponent;
+import javax.swing.KeyStroke;
+import other.Info;
 
 public class HighScoreGUI extends javax.swing.JFrame {
     
@@ -26,6 +32,28 @@ public class HighScoreGUI extends javax.swing.JFrame {
     // method: HighScoreGUI
     // purpose: constructor for the class
     public HighScoreGUI(String scoreList) {
+        
+        // Shows Info Frame when F1 is pressed
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+            KeyStroke.getKeyStroke(KeyEvent.VK_F1,0), "Info");
+        getRootPane().getActionMap().put("Info", new AbstractAction(){ //$NON-NLS-1$
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                Info info = new Info();
+            }
+        });
+        
+        // Exits program when ESC key is pressed
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+            KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE,0), "Exit");
+        getRootPane().getActionMap().put("Exit", new AbstractAction(){ //$NON-NLS-1$
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                System.exit(0);
+            }
+        });
         this.scoreList = scoreList;
         initComponents();
     }
@@ -69,7 +97,6 @@ public class HighScoreGUI extends javax.swing.JFrame {
         highscoreTextArea.setColumns(20);
         highscoreTextArea.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         highscoreTextArea.setRows(5);
-        highscoreTextArea.setDragEnabled(false);
         highscoreTextArea.setEnabled(false);
         getContentPane().add(highscoreTextArea);
         highscoreTextArea.setBounds(180, 100, 240, 220);

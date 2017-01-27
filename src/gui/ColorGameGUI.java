@@ -19,15 +19,20 @@ package gui;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import static java.lang.Thread.sleep;
 import java.text.DateFormat;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Random;
 import static javafx.scene.paint.Color.color;
+import javax.swing.AbstractAction;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 import javax.swing.Timer;
+import other.Info;
 
 public class ColorGameGUI extends javax.swing.JFrame {
 
@@ -46,6 +51,29 @@ public class ColorGameGUI extends javax.swing.JFrame {
      * Creates new form ColorGameGUI
      */
     public ColorGameGUI(int finalScore) {
+        
+        // Shows Info Frame when F1 is pressed
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+            KeyStroke.getKeyStroke(KeyEvent.VK_F1,0), "Info");
+        getRootPane().getActionMap().put("Info", new AbstractAction(){ //$NON-NLS-1$
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                Info info = new Info();
+            }
+        });
+        
+        // Exits program when ESC key is pressed
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+            KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE,0), "Exit");
+        getRootPane().getActionMap().put("Exit", new AbstractAction(){ //$NON-NLS-1$
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                System.exit(0);
+            }
+        });
+        
         possiblePositions = new boolean[3][5];
         this.finalScore = finalScore;
         // endScreen = new EndScreen(finalScore);
@@ -172,7 +200,7 @@ public class ColorGameGUI extends javax.swing.JFrame {
 
         title.setText("Color Game");
         getContentPane().add(title);
-        title.setBounds(430, 10, 90, 20);
+        title.setBounds(430, 10, 90, 14);
 
         redBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/redSplat.png"))); // NOI18N
         redBtn.setBorder(null);
@@ -233,7 +261,7 @@ public class ColorGameGUI extends javax.swing.JFrame {
 
         dateTime.setText("Date and Time");
         getContentPane().add(dateTime);
-        dateTime.setBounds(430, 30, 140, 20);
+        dateTime.setBounds(430, 30, 140, 14);
 
         blueBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blueSplat.png"))); // NOI18N
         blueBtn.setBorder(null);
