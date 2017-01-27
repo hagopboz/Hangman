@@ -39,8 +39,9 @@ public class Info extends javax.swing.JFrame {
                 System.exit(0);
             }
         });
-        
+
         initComponents();
+        setVisible(true);
     }
     
     
@@ -55,24 +56,73 @@ public class Info extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        closeButton = new javax.swing.JButton();
+        termLabel = new javax.swing.JLabel();
+        memberLabel1 = new javax.swing.JLabel();
+        memberLabel2 = new javax.swing.JLabel();
+        memberLabel3 = new javax.swing.JLabel();
+        memberLabel5 = new javax.swing.JLabel();
+        projectNameLabel = new javax.swing.JLabel();
+        memberLabel4 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(600, 400));
         setResizable(false);
         setSize(new java.awt.Dimension(600, 400));
+        getContentPane().setLayout(null);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
+        closeButton.setText("Close");
+        closeButton.setPreferredSize(new java.awt.Dimension(75, 33));
+        closeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(closeButton);
+        closeButton.setBounds(270, 270, 75, 33);
+
+        termLabel.setFont(new java.awt.Font("Comic Sans MS", 2, 24)); // NOI18N
+        termLabel.setText("Winter 2017");
+        getContentPane().add(termLabel);
+        termLabel.setBounds(230, 230, 150, 30);
+
+        memberLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 13)); // NOI18N
+        memberLabel1.setText("Dylan Nguyen - 010135203");
+        getContentPane().add(memberLabel1);
+        memberLabel1.setBounds(220, 200, 170, 20);
+
+        memberLabel2.setFont(new java.awt.Font("Comic Sans MS", 0, 13)); // NOI18N
+        memberLabel2.setText("Hagop Bozawglanian - 009320428");
+        getContentPane().add(memberLabel2);
+        memberLabel2.setBounds(200, 80, 220, 19);
+
+        memberLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 13)); // NOI18N
+        memberLabel3.setText("Seungyun Lee - 010710830");
+        getContentPane().add(memberLabel3);
+        memberLabel3.setBounds(220, 170, 170, 20);
+
+        memberLabel5.setFont(new java.awt.Font("Comic Sans MS", 0, 13)); // NOI18N
+        memberLabel5.setText("John Vincent Canalita - 010440703");
+        getContentPane().add(memberLabel5);
+        memberLabel5.setBounds(200, 110, 220, 19);
+
+        projectNameLabel.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
+        projectNameLabel.setText("Underwater Squad");
+        getContentPane().add(projectNameLabel);
+        projectNameLabel.setBounds(200, 30, 220, 40);
+
+        memberLabel4.setFont(new java.awt.Font("Comic Sans MS", 0, 13)); // NOI18N
+        memberLabel4.setText("Eugene Lee - 010013757");
+        getContentPane().add(memberLabel4);
+        memberLabel4.setBounds(230, 140, 150, 19);
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
+        setVisible(false);
+    }//GEN-LAST:event_closeButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -110,5 +160,13 @@ public class Info extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton closeButton;
+    private javax.swing.JLabel memberLabel1;
+    private javax.swing.JLabel memberLabel2;
+    private javax.swing.JLabel memberLabel3;
+    private javax.swing.JLabel memberLabel4;
+    private javax.swing.JLabel memberLabel5;
+    private javax.swing.JLabel projectNameLabel;
+    private javax.swing.JLabel termLabel;
     // End of variables declaration//GEN-END:variables
 }
