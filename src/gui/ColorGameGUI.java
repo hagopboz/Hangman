@@ -172,7 +172,7 @@ public class ColorGameGUI extends javax.swing.JFrame {
 
         title.setText("Color Game");
         getContentPane().add(title);
-        title.setBounds(430, 10, 90, 16);
+        title.setBounds(430, 10, 90, 20);
 
         redBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/redSplat.png"))); // NOI18N
         redBtn.setBorder(null);
@@ -233,7 +233,7 @@ public class ColorGameGUI extends javax.swing.JFrame {
 
         dateTime.setText("Date and Time");
         getContentPane().add(dateTime);
-        dateTime.setBounds(430, 30, 140, 16);
+        dateTime.setBounds(430, 30, 140, 20);
 
         blueBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blueSplat.png"))); // NOI18N
         blueBtn.setBorder(null);
@@ -358,10 +358,10 @@ public class ColorGameGUI extends javax.swing.JFrame {
     // purpose: change the visibility of the play screen as false and
     // show the end screen
     public void endGame() {
-        EndScreen endScreen = new EndScreen(getFinalScore());
+        SudokuGUI sudoku = new SudokuGUI(getFinalScore());
         this.setVisible(false);
-        endScreen.setScore(getFinalScore()); // changed to getFinalScore() instead of finalScore to properly pass argument
-        endScreen.setVisible(true);
+        sudoku.setScore(getFinalScore()); // changed to getFinalScore() instead of finalScore to properly pass argument
+        sudoku.setVisible(true);
         scoreCount = 0;
     }
     // method: setScore
