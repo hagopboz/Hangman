@@ -15,11 +15,17 @@
 *
 ****************************************************************/ 
 package gui;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Random;
+import javax.swing.AbstractAction;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
+import other.Info;
 
 public class PlayScreenGUI extends javax.swing.JFrame {
    
@@ -40,7 +46,30 @@ public class PlayScreenGUI extends javax.swing.JFrame {
       
     // method: PlayScreenGUI
     // purpose: constructor for the class
-    public PlayScreenGUI() { 
+    public PlayScreenGUI() {
+        
+        // Shows Info Frame when F1 is pressed
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+            KeyStroke.getKeyStroke(KeyEvent.VK_F1,0), "Info");
+        getRootPane().getActionMap().put("Info", new AbstractAction(){ //$NON-NLS-1$
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                Info info = new Info();
+            }
+        });
+        
+        // Exits program when ESC key is pressed
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+            KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE,0), "Exit");
+        getRootPane().getActionMap().put("Exit", new AbstractAction(){ //$NON-NLS-1$
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                System.exit(0);
+            }
+        });
+        
         chooseWord(); // initially choose a word randomly to start the game.
         currentScore = 100;
         loseCount = 0;
@@ -614,11 +643,11 @@ public class PlayScreenGUI extends javax.swing.JFrame {
 
         title.setText("HANGMAN");
         getContentPane().add(title);
-        title.setBounds(430, 10, 90, 20);
+        title.setBounds(430, 10, 90, 14);
 
         dateTime.setText("Date and Time");
         getContentPane().add(dateTime);
-        dateTime.setBounds(430, 30, 150, 20);
+        dateTime.setBounds(430, 30, 150, 14);
 
         leftArm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/leftarm.png"))); // NOI18N
         leftArm.setText("jLabel3");

@@ -42,6 +42,7 @@ public class Info extends javax.swing.JFrame {
 
         initComponents();
         setVisible(true);
+        toFront();
     }
     
     
