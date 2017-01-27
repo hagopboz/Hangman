@@ -52,6 +52,11 @@ public class MenuGUI extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(600, 400));
         setPreferredSize(new java.awt.Dimension(600, 400));
         setResizable(false);
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         playButton.setBackground(new java.awt.Color(255, 255, 153));
@@ -128,6 +133,10 @@ public class MenuGUI extends javax.swing.JFrame {
         this.setVisible(false);
         new CreditsGUI().setVisible(true);
     }//GEN-LAST:event_creditsButtonActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        
+    }//GEN-LAST:event_formKeyPressed
 
     // method: main
     // purpose: runs the current screen on its own
