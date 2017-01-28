@@ -56,6 +56,9 @@ public class HighScoreGUI extends javax.swing.JFrame {
         });
         this.scoreList = scoreList;
         initComponents();
+        
+        // Tooltip Instantiation
+        backButton.setToolTipText("Click to return to the Main Menu.");
     }
 
     /**
