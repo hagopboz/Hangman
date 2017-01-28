@@ -22,6 +22,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Random;
 import javax.swing.AbstractAction;
+import javax.swing.Icon;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
@@ -47,7 +49,9 @@ public class PlayScreenGUI extends javax.swing.JFrame {
     // method: PlayScreenGUI
     // purpose: constructor for the class
     public PlayScreenGUI() {
-        
+//           buttonSkip.setToolTipText("Click to skip to Color Game.");
+//           add(buttonSkip);
+ 
         // Shows Info Frame when F1 is pressed
         getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
             KeyStroke.getKeyStroke(KeyEvent.VK_F1,0), "Info");
@@ -70,6 +74,7 @@ public class PlayScreenGUI extends javax.swing.JFrame {
             }
         });
         
+
         chooseWord(); // initially choose a word randomly to start the game.
         currentScore = 100;
         loseCount = 0;
@@ -77,6 +82,7 @@ public class PlayScreenGUI extends javax.swing.JFrame {
         answer = new char[chosenWord.length()];
         //colorGame = new ColorGameGUI(finalScore);
         initComponents();
+        buttonSkip.setToolTipText("Click to skip to Color Game.");
         displayDateTime();
         startGame();
         
