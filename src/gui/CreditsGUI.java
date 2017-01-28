@@ -53,6 +53,9 @@ public class CreditsGUI extends javax.swing.JFrame {
             }
         });
         initComponents();
+        
+        // Tooltip instantiation
+        creditsBackButton.setToolTipText("Click to go back to Main Menu.");
     }
 
     /**
