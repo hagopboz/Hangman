@@ -56,6 +56,12 @@ public class MenuGUI extends javax.swing.JFrame {
         });
         
         initComponents();
+        
+        // Toolip Instantiation
+        playButton.setToolTipText("Click to start Hangman Game.");
+        creditsButton.setToolTipText("Click to open the credits screen.");
+        highScoreButton.setToolTipText("Click to view high scores.");
+        
         setVisible(true);
     }
 
