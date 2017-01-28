@@ -58,7 +58,10 @@ public class EndScreen extends javax.swing.JFrame {
         this.finalScore = finalScore;
         initComponents();
         
-
+        // Tooltip instantiation
+        buttonEnd.setToolTipText("Click to end session and return to the Main Menu");
+        saveButton.setToolTipText("Click to save the name typed above as a high score");
+        
     }
   
     /**
