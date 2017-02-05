@@ -200,7 +200,7 @@ public class ColorGameGUI extends javax.swing.JFrame {
 
         title.setText("Color Game");
         getContentPane().add(title);
-        title.setBounds(430, 10, 90, 14);
+        title.setBounds(430, 10, 90, 20);
 
         redBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/redSplat.png"))); // NOI18N
         redBtn.setBorder(null);
@@ -261,7 +261,7 @@ public class ColorGameGUI extends javax.swing.JFrame {
 
         dateTime.setText("Date and Time");
         getContentPane().add(dateTime);
-        dateTime.setBounds(430, 30, 140, 14);
+        dateTime.setBounds(430, 30, 140, 20);
 
         blueBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blueSplat.png"))); // NOI18N
         blueBtn.setBorder(null);

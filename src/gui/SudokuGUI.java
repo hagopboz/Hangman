@@ -12,11 +12,13 @@ import java.awt.event.KeyEvent;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.*;
 import javax.swing.AbstractAction;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 import javax.swing.Timer;
 import other.Info;
+import java.lang.*;
 
 /**
  *
@@ -24,7 +26,18 @@ import other.Info;
  */
 public class SudokuGUI extends javax.swing.JFrame {
 
-    static int finalScore;
+    //public static final int GRID_SIZE = 9;    // Size of the board
+    //public static final int SUBGRID_SIZE = 3; // Size of the sub-grid
+    //static int finalScore;
+    
+    //static int max = 9;
+    //static int min = 1;
+    
+    // The game board composes of 9x9 JTextFields,
+    // each containing String "1" to "9", or empty String
+    //private JTextField[][] tfCells = new JTextField[GRID_SIZE][GRID_SIZE];
+    
+    static int [][] a = new int [9][9];
     
     /**
      * Creates new form SudokuGUI
@@ -55,8 +68,10 @@ public class SudokuGUI extends javax.swing.JFrame {
         
         displayDateTimeSudoku();
         initComponents();
+        generate();
+        setupSudoku();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -235,7 +250,6 @@ public class SudokuGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sudoku");
-        setAlwaysOnTop(true);
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setMaximumSize(new java.awt.Dimension(600, 400));
         setMinimumSize(new java.awt.Dimension(600, 400));
@@ -245,7 +259,7 @@ public class SudokuGUI extends javax.swing.JFrame {
 
         scoreLabel.setText("Score");
         getContentPane().add(scoreLabel);
-        scoreLabel.setBounds(440, 60, 27, 14);
+        scoreLabel.setBounds(440, 60, 39, 20);
 
         title.setText("Sudoku");
         title.setPreferredSize(new java.awt.Dimension(50, 20));
@@ -254,7 +268,7 @@ public class SudokuGUI extends javax.swing.JFrame {
 
         dateTime.setText("Date and Time");
         getContentPane().add(dateTime);
-        dateTime.setBounds(440, 40, 140, 14);
+        dateTime.setBounds(440, 40, 140, 20);
 
         btn00.setBackground(java.awt.Color.black);
         btn00.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -2165,10 +2179,12 @@ public class SudokuGUI extends javax.swing.JFrame {
                 new SudokuGUI(finalScore).setVisible(true);
             }
         });
-    }
+    }   
+    
     public int getFinalScore() {
         return finalScore;
     }
+    
     public void setScore(int finalScore) {
         String displayScore = Integer.toString(finalScore);
         scoreLabel.setText(displayScore);
@@ -2180,7 +2196,357 @@ public class SudokuGUI extends javax.swing.JFrame {
         endScreen.setScore(getFinalScore()); // changed to getFinalScore() instead of finalScore to properly pass argument
         endScreen.setVisible(true);
     }
-    // method: displayDateTime
+    
+    public static void generate() {
+        int k=1,n=1;
+        for(int i=0;i<9;i++) {
+           k=n;
+            for(int j=0;j<9;j++) {
+                if(k<=9){
+                    a[i][j]=k;
+                    k++;
+                }else{
+                    k=1;
+                    a[i][j]=k;
+                    k++;
+                }
+            }
+            n=k+3;
+            if(k==10){
+                n=4;
+            }
+            if(n>9) {
+                n=(n%9)+1;
+            }
+        }   
+    }
+    public static void random_gen(int check){
+        int k1,k2,max=2,min=0;
+        Random r= new Random();
+        for(int i=0;i<3;i++) { //There are three groups.So we are using for loop three times.
+            k1=r.nextInt(max-min+1)+min; //This while is just to ensure k1 is not equal to k2.
+            do{
+                k2=r.nextInt(max-min+1)+min;
+            }while(k1==k2);
+            max+=3;min+=3; 
+            if(check==1) {//calling a function to interchange the selected rows.
+                permutation_row(k1,k2);
+            } else if(check==0) {
+                permutation_col(k1,k2);
+            }
+        }
+    }
+    public static void permutation_row(int k1,int k2){
+        int temp;//k1 and k2 are two rows that we are selecting to interchange.
+        for(int j=0;j<9;j++) {
+            temp=a[k1][j];
+            a[k1][j]=a[k2][j];
+            a[k2][j]=temp;
+        }
+    }
+    public static void permutation_col(int k1,int k2){
+        int temp;
+        for(int j=0;j<9;j++) {
+            temp=a[j][k1];
+            a[j][k1]=a[j][k2];
+            a[j][k2]=temp;
+        }
+    }        
+    public static void row_change(int k1,int k2) {
+        int temp;
+        for(int n=1;n<=3;n++) {
+            for(int i=0;i<9;i++) {
+                temp=a[k1][i];
+                a[k1][i]=a[k2][i];
+                a[k2][i]=temp;
+            }
+            k1++;
+            k2++;
+        }
+    }
+    public static void col_change(int k1,int k2) {
+        int temp;
+        for(int n=1;n<=3;n++) {
+          for(int i=0;i<9;i++) {
+                temp=a[i][k1];
+                a[i][k1]=a[i][k2];
+                a[i][k2]=temp;
+            }
+            k1++;
+            k2++;
+        }
+    }
+    public int rndmNumber(){
+        Random rand = new Random();
+        int  n = rand.nextInt(50) + 1;
+        return n % 3;
+    }
+    public void setupSudoku() {
+        generate();
+        random_gen(1);
+        random_gen(0);
+
+        if (rndmNumber() == 1) {
+        btn00.setText(Integer.toString(a[0][0]));
+        }
+        if (rndmNumber() == 1) {
+        btn01.setText(Integer.toString(a[0][1]));
+        }
+        if (rndmNumber() == 1) {
+        btn02.setText(Integer.toString(a[0][2]));
+        }
+        if (rndmNumber() == 1) {
+        btn03.setText(Integer.toString(a[0][3]));
+        }
+        if (rndmNumber() == 1) {
+        btn04.setText(Integer.toString(a[0][4]));
+        }
+        if (rndmNumber() == 1) {
+        btn05.setText(Integer.toString(a[0][5]));
+        }
+        if (rndmNumber() == 1) {
+        btn06.setText(Integer.toString(a[0][6]));
+        }
+        if (rndmNumber() == 1) {
+        btn07.setText(Integer.toString(a[0][7]));
+        }
+        if (rndmNumber() == 1){
+        btn08.setText(Integer.toString(a[0][8]));
+        }
+        
+        if (rndmNumber() == 1) {
+        btn10.setText(Integer.toString(a[1][0]));
+        }
+        if (rndmNumber() == 1) {
+        btn11.setText(Integer.toString(a[1][1]));
+        }
+        if (rndmNumber() == 1) {
+        btn12.setText(Integer.toString(a[1][2]));
+        }
+        if (rndmNumber() == 1) {
+        btn13.setText(Integer.toString(a[1][3]));
+        }
+        if (rndmNumber() == 1) {
+        btn14.setText(Integer.toString(a[1][4]));
+        }
+        if (rndmNumber() == 1) {
+        btn15.setText(Integer.toString(a[1][5]));
+        }
+        if (rndmNumber() == 1) {
+        btn16.setText(Integer.toString(a[1][6]));
+        }
+        if (rndmNumber() == 1) {
+        btn17.setText(Integer.toString(a[1][7]));
+        }
+        if (rndmNumber() == 1) {
+        btn18.setText(Integer.toString(a[1][8]));
+        }
+        
+        
+        if (rndmNumber() == 1) {
+        btn20.setText(Integer.toString(a[2][0]));
+        }
+        if (rndmNumber() == 1) {
+        btn21.setText(Integer.toString(a[2][1]));
+        }
+        if (rndmNumber() == 1) {
+        btn22.setText(Integer.toString(a[2][2]));
+        }
+        if (rndmNumber() == 1) {
+        btn23.setText(Integer.toString(a[2][3]));
+        }
+        if (rndmNumber() == 1) {
+        btn24.setText(Integer.toString(a[2][4]));
+        }
+        if (rndmNumber() == 1) {
+        btn25.setText(Integer.toString(a[2][5]));
+        }
+        if (rndmNumber() == 1) {
+        btn26.setText(Integer.toString(a[2][6]));
+        }
+        if (rndmNumber() == 1) {
+        btn27.setText(Integer.toString(a[2][7]));
+        }
+        if (rndmNumber() == 1) {
+        btn28.setText(Integer.toString(a[2][8]));
+        }
+        
+        
+        if (rndmNumber() == 1) {
+        btn30.setText(Integer.toString(a[3][0]));
+        }
+        if (rndmNumber() == 1) {
+        btn31.setText(Integer.toString(a[3][1]));
+        }
+        if (rndmNumber() == 1) {
+        btn32.setText(Integer.toString(a[3][2]));
+        }
+        if (rndmNumber() == 1) {
+        btn33.setText(Integer.toString(a[3][3]));
+        }
+        if (rndmNumber() == 1) {
+        btn34.setText(Integer.toString(a[3][4]));
+        }
+        if (rndmNumber() == 1) {
+        btn35.setText(Integer.toString(a[3][5]));
+        }
+        if (rndmNumber() == 1) {
+        btn36.setText(Integer.toString(a[3][6]));
+        }
+        if (rndmNumber() == 1) {
+        btn37.setText(Integer.toString(a[3][7]));
+        }
+        if (rndmNumber() == 1) {
+        btn38.setText(Integer.toString(a[3][8]));
+        }
+
+        
+        if (rndmNumber() == 1) {
+        btn40.setText(Integer.toString(a[4][0]));
+        }
+        if (rndmNumber() == 1) {
+        btn41.setText(Integer.toString(a[4][1]));
+        }
+        if (rndmNumber() == 1) {
+        btn42.setText(Integer.toString(a[4][2]));
+        }
+        if (rndmNumber() == 1) {
+        btn43.setText(Integer.toString(a[4][3]));
+        }
+        if (rndmNumber() == 1) {
+        btn44.setText(Integer.toString(a[4][4]));
+        }
+        if (rndmNumber() == 1) {
+        btn45.setText(Integer.toString(a[4][5]));
+        }
+        if (rndmNumber() == 1) {
+        btn46.setText(Integer.toString(a[4][6]));
+        }
+        if (rndmNumber() == 1) {
+        btn47.setText(Integer.toString(a[4][7]));
+        }
+        if (rndmNumber() == 1) {
+        btn48.setText(Integer.toString(a[4][8]));
+        }
+        
+
+        if (rndmNumber() == 1) {
+        btn50.setText(Integer.toString(a[5][0]));
+        }
+        if (rndmNumber() == 1) {
+        btn51.setText(Integer.toString(a[5][1]));
+        }
+        if (rndmNumber() == 1) {
+        btn52.setText(Integer.toString(a[5][2]));
+        }
+        if (rndmNumber() == 1) {
+        btn53.setText(Integer.toString(a[5][3]));
+        }
+        if (rndmNumber() == 1) {
+        btn54.setText(Integer.toString(a[5][4]));
+        }
+        if (rndmNumber() == 1) {
+        btn55.setText(Integer.toString(a[5][5]));
+        }
+        if (rndmNumber() == 1) {
+        btn56.setText(Integer.toString(a[5][6]));
+        }
+        if (rndmNumber() == 1) {
+        btn57.setText(Integer.toString(a[5][7]));
+        }
+        if (rndmNumber() == 1) {
+        btn58.setText(Integer.toString(a[5][8]));
+        }
+        
+
+        if (rndmNumber() == 1) {
+        btn60.setText(Integer.toString(a[6][0]));
+        }
+        if (rndmNumber() == 1) {
+        btn61.setText(Integer.toString(a[6][1]));
+        }
+        if (rndmNumber() == 1) {
+        btn62.setText(Integer.toString(a[6][2]));
+        }
+        if (rndmNumber() == 1) {
+        btn63.setText(Integer.toString(a[6][3]));
+        }
+        if (rndmNumber() == 1) {
+        btn64.setText(Integer.toString(a[6][4]));
+        }
+        if (rndmNumber() == 1) {
+        btn65.setText(Integer.toString(a[6][5]));
+        }
+        if (rndmNumber() == 1) {
+        btn66.setText(Integer.toString(a[6][6]));
+        }
+        if (rndmNumber() == 1) {
+        btn67.setText(Integer.toString(a[6][7]));
+        }
+        if (rndmNumber() == 1) {
+        btn68.setText(Integer.toString(a[6][8]));
+        }
+        
+
+        if (rndmNumber() == 1) {
+        btn70.setText(Integer.toString(a[7][0]));
+        }
+        if (rndmNumber() == 1) {
+        btn71.setText(Integer.toString(a[7][1]));
+        }
+        if (rndmNumber() == 1) {
+        btn72.setText(Integer.toString(a[7][2]));
+        }
+        if (rndmNumber() == 1) {
+        btn73.setText(Integer.toString(a[7][3]));
+        }
+        if (rndmNumber() == 1) {
+        btn74.setText(Integer.toString(a[7][4]));
+        }
+        if (rndmNumber() == 1) {
+        btn75.setText(Integer.toString(a[7][5]));
+        }
+        if (rndmNumber() == 1) {
+        btn76.setText(Integer.toString(a[7][6]));
+        }
+        if (rndmNumber() == 1) {
+        btn77.setText(Integer.toString(a[7][7]));
+        }
+        if (rndmNumber() == 1) {
+        btn78.setText(Integer.toString(a[7][8]));
+        }
+        
+
+        if (rndmNumber() == 1) {
+        btn80.setText(Integer.toString(a[8][0]));
+        }
+        if (rndmNumber() == 1) {
+        btn81.setText(Integer.toString(a[8][1]));
+        }
+        if (rndmNumber() == 1) {
+        btn82.setText(Integer.toString(a[8][2]));
+        }
+        if (rndmNumber() == 1) {
+        btn83.setText(Integer.toString(a[8][3]));
+        }
+        if (rndmNumber() == 1) {
+        btn84.setText(Integer.toString(a[8][4]));
+        }
+        if (rndmNumber() == 1) {
+        btn85.setText(Integer.toString(a[8][5]));
+        }
+        if (rndmNumber() == 1) {
+        btn86.setText(Integer.toString(a[8][6]));
+        }
+        if (rndmNumber() == 1) {
+        btn87.setText(Integer.toString(a[8][7]));
+        }
+        if (rndmNumber() == 1) {
+        btn88.setText(Integer.toString(a[8][8]));
+        }
+    }
+
+// method: displayDateTime
     // purpose: display current time and date. Update each second.
     public void displayDateTimeSudoku() {
         final DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
