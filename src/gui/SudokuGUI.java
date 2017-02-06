@@ -84,8 +84,6 @@ public class SudokuGUI extends javax.swing.JFrame {
         scoreLabel = new javax.swing.JLabel();
         title = new javax.swing.JLabel();
         dateTime = new javax.swing.JLabel();
-        submitButton = new javax.swing.JButton();
-        quitButton = new javax.swing.JButton();
         btn00 = new javax.swing.JTextField();
         btn01 = new javax.swing.JTextField();
         btn02 = new javax.swing.JTextField();
@@ -261,7 +259,7 @@ public class SudokuGUI extends javax.swing.JFrame {
 
         scoreLabel.setText("Score");
         getContentPane().add(scoreLabel);
-        scoreLabel.setBounds(440, 60, 34, 16);
+        scoreLabel.setBounds(440, 60, 39, 20);
 
         title.setText("Sudoku");
         title.setPreferredSize(new java.awt.Dimension(50, 20));
@@ -270,25 +268,7 @@ public class SudokuGUI extends javax.swing.JFrame {
 
         dateTime.setText("Date and Time");
         getContentPane().add(dateTime);
-        dateTime.setBounds(440, 40, 140, 16);
-
-        submitButton.setText("Submit");
-        submitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitButtonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(submitButton);
-        submitButton.setBounds(460, 320, 75, 33);
-
-        quitButton.setText("Quit");
-        quitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quitButtonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(quitButton);
-        quitButton.setBounds(460, 270, 75, 33);
+        dateTime.setBounds(440, 40, 140, 20);
 
         btn00.setBackground(java.awt.Color.black);
         btn00.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -296,7 +276,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn00.setBorder(null);
         btn00.setMaximumSize(new java.awt.Dimension(40, 40));
         btn00.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn00.setOpaque(false);
         btn00.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn00.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn00ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn00);
         btn00.setBounds(50, 10, 40, 40);
 
@@ -305,7 +291,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn01.setBorder(null);
         btn01.setMaximumSize(new java.awt.Dimension(40, 40));
         btn01.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn01.setOpaque(false);
         btn01.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn01.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn01ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn01);
         btn01.setBounds(50, 50, 40, 40);
 
@@ -314,7 +306,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn02.setBorder(null);
         btn02.setMaximumSize(new java.awt.Dimension(40, 40));
         btn02.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn02.setOpaque(false);
         btn02.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn02.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn02ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn02);
         btn02.setBounds(50, 90, 40, 40);
 
@@ -323,7 +321,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn03.setBorder(null);
         btn03.setMaximumSize(new java.awt.Dimension(40, 40));
         btn03.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn03.setOpaque(false);
         btn03.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn03.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn03ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn03);
         btn03.setBounds(50, 130, 40, 40);
 
@@ -332,7 +336,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn04.setBorder(null);
         btn04.setMaximumSize(new java.awt.Dimension(40, 40));
         btn04.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn04.setOpaque(false);
         btn04.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn04.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn04ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn04);
         btn04.setBounds(50, 170, 40, 40);
 
@@ -341,7 +351,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn05.setBorder(null);
         btn05.setMaximumSize(new java.awt.Dimension(40, 40));
         btn05.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn05.setOpaque(false);
         btn05.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn05.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn05ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn05);
         btn05.setBounds(50, 210, 40, 40);
 
@@ -350,7 +366,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn06.setBorder(null);
         btn06.setMaximumSize(new java.awt.Dimension(40, 40));
         btn06.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn06.setOpaque(false);
         btn06.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn06.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn06ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn06);
         btn06.setBounds(50, 250, 40, 40);
 
@@ -359,7 +381,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn07.setBorder(null);
         btn07.setMaximumSize(new java.awt.Dimension(40, 40));
         btn07.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn07.setOpaque(false);
         btn07.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn07.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn07ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn07);
         btn07.setBounds(50, 290, 40, 40);
 
@@ -368,7 +396,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn08.setBorder(null);
         btn08.setMaximumSize(new java.awt.Dimension(40, 40));
         btn08.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn08.setOpaque(false);
         btn08.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn08.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn08ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn08);
         btn08.setBounds(50, 330, 40, 40);
 
@@ -377,7 +411,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn10.setBorder(null);
         btn10.setMaximumSize(new java.awt.Dimension(40, 40));
         btn10.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn10.setOpaque(false);
         btn10.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn10ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn10);
         btn10.setBounds(90, 10, 40, 40);
 
@@ -386,7 +426,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn11.setBorder(null);
         btn11.setMaximumSize(new java.awt.Dimension(40, 40));
         btn11.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn11.setOpaque(false);
         btn11.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn11ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn11);
         btn11.setBounds(90, 50, 40, 40);
 
@@ -395,7 +441,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn12.setBorder(null);
         btn12.setMaximumSize(new java.awt.Dimension(40, 40));
         btn12.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn12.setOpaque(false);
         btn12.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn12ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn12);
         btn12.setBounds(90, 90, 40, 40);
 
@@ -404,7 +456,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn13.setBorder(null);
         btn13.setMaximumSize(new java.awt.Dimension(40, 40));
         btn13.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn13.setOpaque(false);
         btn13.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn13ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn13);
         btn13.setBounds(90, 130, 40, 40);
 
@@ -413,7 +471,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn14.setBorder(null);
         btn14.setMaximumSize(new java.awt.Dimension(40, 40));
         btn14.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn14.setOpaque(false);
         btn14.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn14ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn14);
         btn14.setBounds(90, 170, 40, 40);
 
@@ -422,7 +486,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn15.setBorder(null);
         btn15.setMaximumSize(new java.awt.Dimension(40, 40));
         btn15.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn15.setOpaque(false);
         btn15.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn15ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn15);
         btn15.setBounds(90, 210, 40, 40);
 
@@ -431,7 +501,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn16.setBorder(null);
         btn16.setMaximumSize(new java.awt.Dimension(40, 40));
         btn16.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn16.setOpaque(false);
         btn16.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn16ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn16);
         btn16.setBounds(90, 250, 40, 40);
 
@@ -440,7 +516,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn17.setBorder(null);
         btn17.setMaximumSize(new java.awt.Dimension(40, 40));
         btn17.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn17.setOpaque(false);
         btn17.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn17ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn17);
         btn17.setBounds(90, 290, 40, 40);
 
@@ -449,7 +531,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn18.setBorder(null);
         btn18.setMaximumSize(new java.awt.Dimension(40, 40));
         btn18.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn18.setOpaque(false);
         btn18.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn18ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn18);
         btn18.setBounds(90, 330, 40, 40);
 
@@ -458,7 +546,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn20.setBorder(null);
         btn20.setMaximumSize(new java.awt.Dimension(40, 40));
         btn20.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn20.setOpaque(false);
         btn20.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn20ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn20);
         btn20.setBounds(130, 10, 40, 40);
 
@@ -467,7 +561,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn21.setBorder(null);
         btn21.setMaximumSize(new java.awt.Dimension(40, 40));
         btn21.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn21.setOpaque(false);
         btn21.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn21ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn21);
         btn21.setBounds(130, 50, 40, 40);
 
@@ -476,7 +576,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn22.setBorder(null);
         btn22.setMaximumSize(new java.awt.Dimension(40, 40));
         btn22.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn22.setOpaque(false);
         btn22.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn22ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn22);
         btn22.setBounds(130, 90, 40, 40);
 
@@ -485,7 +591,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn23.setBorder(null);
         btn23.setMaximumSize(new java.awt.Dimension(40, 40));
         btn23.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn23.setOpaque(false);
         btn23.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn23ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn23);
         btn23.setBounds(130, 130, 40, 40);
 
@@ -494,7 +606,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn24.setBorder(null);
         btn24.setMaximumSize(new java.awt.Dimension(40, 40));
         btn24.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn24.setOpaque(false);
         btn24.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn24ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn24);
         btn24.setBounds(130, 170, 40, 40);
 
@@ -503,7 +621,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn25.setBorder(null);
         btn25.setMaximumSize(new java.awt.Dimension(40, 40));
         btn25.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn25.setOpaque(false);
         btn25.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn25ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn25);
         btn25.setBounds(130, 210, 40, 40);
 
@@ -512,7 +636,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn26.setBorder(null);
         btn26.setMaximumSize(new java.awt.Dimension(40, 40));
         btn26.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn26.setOpaque(false);
         btn26.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn26ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn26);
         btn26.setBounds(130, 250, 40, 40);
 
@@ -521,7 +651,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn27.setBorder(null);
         btn27.setMaximumSize(new java.awt.Dimension(40, 40));
         btn27.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn27.setOpaque(false);
         btn27.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn27ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn27);
         btn27.setBounds(130, 290, 40, 40);
 
@@ -530,7 +666,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn28.setBorder(null);
         btn28.setMaximumSize(new java.awt.Dimension(40, 40));
         btn28.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn28.setOpaque(false);
         btn28.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn28ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn28);
         btn28.setBounds(130, 330, 40, 40);
 
@@ -539,7 +681,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn30.setBorder(null);
         btn30.setMaximumSize(new java.awt.Dimension(40, 40));
         btn30.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn30.setOpaque(false);
         btn30.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn30ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn30);
         btn30.setBounds(170, 10, 40, 40);
 
@@ -548,7 +696,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn31.setBorder(null);
         btn31.setMaximumSize(new java.awt.Dimension(40, 40));
         btn31.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn31.setOpaque(false);
         btn31.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn31ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn31);
         btn31.setBounds(170, 50, 40, 40);
 
@@ -557,7 +711,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn32.setBorder(null);
         btn32.setMaximumSize(new java.awt.Dimension(40, 40));
         btn32.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn32.setOpaque(false);
         btn32.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn32.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn32ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn32);
         btn32.setBounds(170, 90, 40, 40);
 
@@ -566,7 +726,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn33.setBorder(null);
         btn33.setMaximumSize(new java.awt.Dimension(40, 40));
         btn33.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn33.setOpaque(false);
         btn33.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn33.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn33ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn33);
         btn33.setBounds(170, 130, 40, 40);
 
@@ -575,7 +741,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn34.setBorder(null);
         btn34.setMaximumSize(new java.awt.Dimension(40, 40));
         btn34.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn34.setOpaque(false);
         btn34.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn34.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn34ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn34);
         btn34.setBounds(170, 170, 40, 40);
 
@@ -584,7 +756,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn35.setBorder(null);
         btn35.setMaximumSize(new java.awt.Dimension(40, 40));
         btn35.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn35.setOpaque(false);
         btn35.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn35.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn35ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn35);
         btn35.setBounds(170, 210, 40, 40);
 
@@ -593,7 +771,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn36.setBorder(null);
         btn36.setMaximumSize(new java.awt.Dimension(40, 40));
         btn36.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn36.setOpaque(false);
         btn36.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn36.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn36ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn36);
         btn36.setBounds(170, 250, 40, 40);
 
@@ -602,7 +786,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn37.setBorder(null);
         btn37.setMaximumSize(new java.awt.Dimension(40, 40));
         btn37.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn37.setOpaque(false);
         btn37.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn37.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn37ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn37);
         btn37.setBounds(170, 290, 40, 40);
 
@@ -611,7 +801,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn38.setBorder(null);
         btn38.setMaximumSize(new java.awt.Dimension(40, 40));
         btn38.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn38.setOpaque(false);
         btn38.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn38.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn38ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn38);
         btn38.setBounds(170, 330, 40, 40);
 
@@ -620,7 +816,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn40.setBorder(null);
         btn40.setMaximumSize(new java.awt.Dimension(40, 40));
         btn40.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn40.setOpaque(false);
         btn40.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn40.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn40ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn40);
         btn40.setBounds(210, 10, 40, 40);
 
@@ -629,7 +831,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn41.setBorder(null);
         btn41.setMaximumSize(new java.awt.Dimension(40, 40));
         btn41.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn41.setOpaque(false);
         btn41.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn41.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn41ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn41);
         btn41.setBounds(210, 50, 40, 40);
 
@@ -638,7 +846,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn42.setBorder(null);
         btn42.setMaximumSize(new java.awt.Dimension(40, 40));
         btn42.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn42.setOpaque(false);
         btn42.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn42.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn42ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn42);
         btn42.setBounds(210, 90, 40, 40);
 
@@ -647,7 +861,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn43.setBorder(null);
         btn43.setMaximumSize(new java.awt.Dimension(40, 40));
         btn43.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn43.setOpaque(false);
         btn43.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn43.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn43ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn43);
         btn43.setBounds(210, 130, 40, 40);
 
@@ -656,7 +876,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn44.setBorder(null);
         btn44.setMaximumSize(new java.awt.Dimension(40, 40));
         btn44.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn44.setOpaque(false);
         btn44.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn44.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn44ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn44);
         btn44.setBounds(210, 170, 40, 40);
 
@@ -665,7 +891,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn45.setBorder(null);
         btn45.setMaximumSize(new java.awt.Dimension(40, 40));
         btn45.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn45.setOpaque(false);
         btn45.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn45.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn45ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn45);
         btn45.setBounds(210, 210, 40, 40);
 
@@ -674,7 +906,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn46.setBorder(null);
         btn46.setMaximumSize(new java.awt.Dimension(40, 40));
         btn46.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn46.setOpaque(false);
         btn46.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn46.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn46ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn46);
         btn46.setBounds(210, 250, 40, 40);
 
@@ -683,7 +921,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn47.setBorder(null);
         btn47.setMaximumSize(new java.awt.Dimension(40, 40));
         btn47.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn47.setOpaque(false);
         btn47.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn47.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn47ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn47);
         btn47.setBounds(210, 290, 40, 40);
 
@@ -692,7 +936,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn48.setBorder(null);
         btn48.setMaximumSize(new java.awt.Dimension(40, 40));
         btn48.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn48.setOpaque(false);
         btn48.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn48.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn48ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn48);
         btn48.setBounds(210, 330, 40, 40);
 
@@ -701,7 +951,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn50.setBorder(null);
         btn50.setMaximumSize(new java.awt.Dimension(40, 40));
         btn50.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn50.setOpaque(false);
         btn50.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn50.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn50ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn50);
         btn50.setBounds(250, 10, 40, 40);
 
@@ -710,7 +966,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn51.setBorder(null);
         btn51.setMaximumSize(new java.awt.Dimension(40, 40));
         btn51.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn51.setOpaque(false);
         btn51.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn51.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn51ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn51);
         btn51.setBounds(250, 50, 40, 40);
 
@@ -719,7 +981,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn52.setBorder(null);
         btn52.setMaximumSize(new java.awt.Dimension(40, 40));
         btn52.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn52.setOpaque(false);
         btn52.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn52.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn52ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn52);
         btn52.setBounds(250, 90, 40, 40);
 
@@ -728,7 +996,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn53.setBorder(null);
         btn53.setMaximumSize(new java.awt.Dimension(40, 40));
         btn53.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn53.setOpaque(false);
         btn53.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn53.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn53ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn53);
         btn53.setBounds(250, 130, 40, 40);
 
@@ -737,7 +1011,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn54.setBorder(null);
         btn54.setMaximumSize(new java.awt.Dimension(40, 40));
         btn54.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn54.setOpaque(false);
         btn54.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn54.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn54ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn54);
         btn54.setBounds(250, 170, 40, 40);
 
@@ -746,7 +1026,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn55.setBorder(null);
         btn55.setMaximumSize(new java.awt.Dimension(40, 40));
         btn55.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn55.setOpaque(false);
         btn55.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn55.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn55ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn55);
         btn55.setBounds(250, 210, 40, 40);
 
@@ -755,7 +1041,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn56.setBorder(null);
         btn56.setMaximumSize(new java.awt.Dimension(40, 40));
         btn56.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn56.setOpaque(false);
         btn56.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn56.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn56ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn56);
         btn56.setBounds(250, 250, 40, 40);
 
@@ -764,7 +1056,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn57.setBorder(null);
         btn57.setMaximumSize(new java.awt.Dimension(40, 40));
         btn57.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn57.setOpaque(false);
         btn57.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn57.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn57ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn57);
         btn57.setBounds(250, 290, 40, 40);
 
@@ -773,7 +1071,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn58.setBorder(null);
         btn58.setMaximumSize(new java.awt.Dimension(40, 40));
         btn58.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn58.setOpaque(false);
         btn58.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn58.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn58ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn58);
         btn58.setBounds(250, 330, 40, 40);
 
@@ -782,7 +1086,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn60.setBorder(null);
         btn60.setMaximumSize(new java.awt.Dimension(40, 40));
         btn60.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn60.setOpaque(false);
         btn60.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn60.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn60ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn60);
         btn60.setBounds(290, 10, 40, 40);
 
@@ -791,7 +1101,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn61.setBorder(null);
         btn61.setMaximumSize(new java.awt.Dimension(40, 40));
         btn61.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn61.setOpaque(false);
         btn61.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn61.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn61ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn61);
         btn61.setBounds(290, 50, 40, 40);
 
@@ -800,7 +1116,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn62.setBorder(null);
         btn62.setMaximumSize(new java.awt.Dimension(40, 40));
         btn62.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn62.setOpaque(false);
         btn62.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn62.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn62ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn62);
         btn62.setBounds(290, 90, 40, 40);
 
@@ -809,7 +1131,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn63.setBorder(null);
         btn63.setMaximumSize(new java.awt.Dimension(40, 40));
         btn63.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn63.setOpaque(false);
         btn63.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn63.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn63ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn63);
         btn63.setBounds(290, 130, 40, 40);
 
@@ -818,7 +1146,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn64.setBorder(null);
         btn64.setMaximumSize(new java.awt.Dimension(40, 40));
         btn64.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn64.setOpaque(false);
         btn64.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn64.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn64ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn64);
         btn64.setBounds(290, 170, 40, 40);
 
@@ -827,7 +1161,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn65.setBorder(null);
         btn65.setMaximumSize(new java.awt.Dimension(40, 40));
         btn65.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn65.setOpaque(false);
         btn65.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn65.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn65ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn65);
         btn65.setBounds(290, 210, 40, 40);
 
@@ -836,7 +1176,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn66.setBorder(null);
         btn66.setMaximumSize(new java.awt.Dimension(40, 40));
         btn66.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn66.setOpaque(false);
         btn66.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn66.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn66ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn66);
         btn66.setBounds(290, 250, 40, 40);
 
@@ -845,7 +1191,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn67.setBorder(null);
         btn67.setMaximumSize(new java.awt.Dimension(40, 40));
         btn67.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn67.setOpaque(false);
         btn67.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn67.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn67ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn67);
         btn67.setBounds(290, 290, 40, 40);
 
@@ -854,7 +1206,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn68.setBorder(null);
         btn68.setMaximumSize(new java.awt.Dimension(40, 40));
         btn68.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn68.setOpaque(false);
         btn68.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn68.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn68ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn68);
         btn68.setBounds(290, 330, 40, 40);
 
@@ -863,7 +1221,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn70.setBorder(null);
         btn70.setMaximumSize(new java.awt.Dimension(40, 40));
         btn70.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn70.setOpaque(false);
         btn70.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn70.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn70ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn70);
         btn70.setBounds(330, 10, 40, 40);
 
@@ -872,7 +1236,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn71.setBorder(null);
         btn71.setMaximumSize(new java.awt.Dimension(40, 40));
         btn71.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn71.setOpaque(false);
         btn71.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn71.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn71ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn71);
         btn71.setBounds(330, 50, 40, 40);
 
@@ -881,7 +1251,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn72.setBorder(null);
         btn72.setMaximumSize(new java.awt.Dimension(40, 40));
         btn72.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn72.setOpaque(false);
         btn72.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn72.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn72ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn72);
         btn72.setBounds(330, 90, 40, 40);
 
@@ -890,7 +1266,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn73.setBorder(null);
         btn73.setMaximumSize(new java.awt.Dimension(40, 40));
         btn73.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn73.setOpaque(false);
         btn73.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn73.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn73ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn73);
         btn73.setBounds(330, 130, 40, 40);
 
@@ -899,7 +1281,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn74.setBorder(null);
         btn74.setMaximumSize(new java.awt.Dimension(40, 40));
         btn74.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn74.setOpaque(false);
         btn74.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn74.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn74ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn74);
         btn74.setBounds(330, 170, 40, 40);
 
@@ -908,7 +1296,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn75.setBorder(null);
         btn75.setMaximumSize(new java.awt.Dimension(40, 40));
         btn75.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn75.setOpaque(false);
         btn75.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn75.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn75ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn75);
         btn75.setBounds(330, 210, 40, 40);
 
@@ -917,7 +1311,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn76.setBorder(null);
         btn76.setMaximumSize(new java.awt.Dimension(40, 40));
         btn76.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn76.setOpaque(false);
         btn76.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn76.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn76ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn76);
         btn76.setBounds(330, 250, 40, 40);
 
@@ -926,7 +1326,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn77.setBorder(null);
         btn77.setMaximumSize(new java.awt.Dimension(40, 40));
         btn77.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn77.setOpaque(false);
         btn77.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn77.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn77ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn77);
         btn77.setBounds(330, 290, 40, 40);
 
@@ -935,7 +1341,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn78.setBorder(null);
         btn78.setMaximumSize(new java.awt.Dimension(40, 40));
         btn78.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn78.setOpaque(false);
         btn78.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn78.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn78ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn78);
         btn78.setBounds(330, 330, 40, 40);
 
@@ -944,7 +1356,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn80.setBorder(null);
         btn80.setMaximumSize(new java.awt.Dimension(40, 40));
         btn80.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn80.setOpaque(false);
         btn80.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn80.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn80ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn80);
         btn80.setBounds(370, 10, 40, 40);
 
@@ -953,7 +1371,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn81.setBorder(null);
         btn81.setMaximumSize(new java.awt.Dimension(40, 40));
         btn81.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn81.setOpaque(false);
         btn81.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn81.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn81ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn81);
         btn81.setBounds(370, 50, 40, 40);
 
@@ -962,7 +1386,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn82.setBorder(null);
         btn82.setMaximumSize(new java.awt.Dimension(40, 40));
         btn82.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn82.setOpaque(false);
         btn82.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn82.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn82ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn82);
         btn82.setBounds(370, 90, 40, 40);
 
@@ -971,7 +1401,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn83.setBorder(null);
         btn83.setMaximumSize(new java.awt.Dimension(40, 40));
         btn83.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn83.setOpaque(false);
         btn83.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn83.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn83ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn83);
         btn83.setBounds(370, 130, 40, 40);
 
@@ -980,7 +1416,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn84.setBorder(null);
         btn84.setMaximumSize(new java.awt.Dimension(40, 40));
         btn84.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn84.setOpaque(false);
         btn84.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn84.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn84ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn84);
         btn84.setBounds(370, 170, 40, 40);
 
@@ -989,7 +1431,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn85.setBorder(null);
         btn85.setMaximumSize(new java.awt.Dimension(40, 40));
         btn85.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn85.setOpaque(false);
         btn85.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn85.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn85ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn85);
         btn85.setBounds(370, 210, 40, 40);
 
@@ -998,7 +1446,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn86.setBorder(null);
         btn86.setMaximumSize(new java.awt.Dimension(40, 40));
         btn86.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn86.setOpaque(false);
         btn86.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn86.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn86ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn86);
         btn86.setBounds(370, 250, 40, 40);
 
@@ -1007,7 +1461,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn87.setBorder(null);
         btn87.setMaximumSize(new java.awt.Dimension(40, 40));
         btn87.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn87.setOpaque(false);
         btn87.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn87.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn87ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn87);
         btn87.setBounds(370, 290, 40, 40);
 
@@ -1016,7 +1476,13 @@ public class SudokuGUI extends javax.swing.JFrame {
         btn88.setBorder(null);
         btn88.setMaximumSize(new java.awt.Dimension(40, 40));
         btn88.setMinimumSize(new java.awt.Dimension(40, 40));
+        btn88.setOpaque(false);
         btn88.setPreferredSize(new java.awt.Dimension(40, 40));
+        btn88.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn88ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn88);
         btn88.setBounds(370, 330, 40, 40);
 
@@ -1356,15 +1822,329 @@ public class SudokuGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    // 
-    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
+    private void btn00ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn00ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_submitButtonActionPerformed
+    }//GEN-LAST:event_btn00ActionPerformed
 
-    // button quits sudoku game and displays the EndScreen
-    private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
+    private void btn01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn01ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_quitButtonActionPerformed
+    }//GEN-LAST:event_btn01ActionPerformed
+
+    private void btn02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn02ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn02ActionPerformed
+
+    private void btn03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn03ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn03ActionPerformed
+
+    private void btn04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn04ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn04ActionPerformed
+
+    private void btn05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn05ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn05ActionPerformed
+
+    private void btn06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn06ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn06ActionPerformed
+
+    private void btn07ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn07ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn07ActionPerformed
+
+    private void btn08ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn08ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn08ActionPerformed
+
+    private void btn10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn10ActionPerformed
+
+    private void btn11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn11ActionPerformed
+
+    private void btn12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn12ActionPerformed
+
+    private void btn13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn13ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn13ActionPerformed
+
+    private void btn14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn14ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn14ActionPerformed
+
+    private void btn15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn15ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn15ActionPerformed
+
+    private void btn16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn16ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn16ActionPerformed
+
+    private void btn17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn17ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn17ActionPerformed
+
+    private void btn18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn18ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn18ActionPerformed
+
+    private void btn20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn20ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn20ActionPerformed
+
+    private void btn21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn21ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn21ActionPerformed
+
+    private void btn22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn22ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn22ActionPerformed
+
+    private void btn23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn23ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn23ActionPerformed
+
+    private void btn24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn24ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn24ActionPerformed
+
+    private void btn25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn25ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn25ActionPerformed
+
+    private void btn26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn26ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn26ActionPerformed
+
+    private void btn27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn27ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn27ActionPerformed
+
+    private void btn28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn28ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn28ActionPerformed
+
+    private void btn30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn30ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn30ActionPerformed
+
+    private void btn38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn38ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn38ActionPerformed
+
+    private void btn37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn37ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn37ActionPerformed
+
+    private void btn35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn35ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn35ActionPerformed
+
+    private void btn33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn33ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn33ActionPerformed
+
+    private void btn31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn31ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn31ActionPerformed
+
+    private void btn32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn32ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn32ActionPerformed
+
+    private void btn34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn34ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn34ActionPerformed
+
+    private void btn36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn36ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn36ActionPerformed
+
+    private void btn40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn40ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn40ActionPerformed
+
+    private void btn48ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn48ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn48ActionPerformed
+
+    private void btn47ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn47ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn47ActionPerformed
+
+    private void btn45ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn45ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn45ActionPerformed
+
+    private void btn43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn43ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn43ActionPerformed
+
+    private void btn41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn41ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn41ActionPerformed
+
+    private void btn42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn42ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn42ActionPerformed
+
+    private void btn44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn44ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn44ActionPerformed
+
+    private void btn46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn46ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn46ActionPerformed
+
+    private void btn51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn51ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn51ActionPerformed
+
+    private void btn55ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn55ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn55ActionPerformed
+
+    private void btn53ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn53ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn53ActionPerformed
+
+    private void btn58ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn58ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn58ActionPerformed
+
+    private void btn57ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn57ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn57ActionPerformed
+
+    private void btn56ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn56ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn56ActionPerformed
+
+    private void btn50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn50ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn50ActionPerformed
+
+    private void btn54ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn54ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn54ActionPerformed
+
+    private void btn52ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn52ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn52ActionPerformed
+
+    private void btn61ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn61ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn61ActionPerformed
+
+    private void btn65ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn65ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn65ActionPerformed
+
+    private void btn63ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn63ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn63ActionPerformed
+
+    private void btn68ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn68ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn68ActionPerformed
+
+    private void btn67ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn67ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn67ActionPerformed
+
+    private void btn66ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn66ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn66ActionPerformed
+
+    private void btn60ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn60ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn60ActionPerformed
+
+    private void btn64ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn64ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn64ActionPerformed
+
+    private void btn62ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn62ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn62ActionPerformed
+
+    private void btn70ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn70ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn70ActionPerformed
+
+    private void btn74ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn74ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn74ActionPerformed
+
+    private void btn73ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn73ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn73ActionPerformed
+
+    private void btn77ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn77ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn77ActionPerformed
+
+    private void btn75ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn75ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn75ActionPerformed
+
+    private void btn76ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn76ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn76ActionPerformed
+
+    private void btn72ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn72ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn72ActionPerformed
+
+    private void btn71ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn71ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn71ActionPerformed
+
+    private void btn78ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn78ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn78ActionPerformed
+
+    private void btn82ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn82ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn82ActionPerformed
+
+    private void btn86ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn86ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn86ActionPerformed
+
+    private void btn81ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn81ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn81ActionPerformed
+
+    private void btn87ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn87ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn87ActionPerformed
+
+    private void btn80ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn80ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn80ActionPerformed
+
+    private void btn83ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn83ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn83ActionPerformed
+
+    private void btn85ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn85ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn85ActionPerformed
+
+    private void btn84ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn84ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn84ActionPerformed
+
+    private void btn88ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn88ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn88ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1950,9 +2730,7 @@ public class SudokuGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel81;
     private javax.swing.JLabel jLabel82;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JButton quitButton;
     private javax.swing.JLabel scoreLabel;
-    private javax.swing.JButton submitButton;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }
