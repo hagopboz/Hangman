@@ -1869,6 +1869,11 @@ public class SudokuGUI extends javax.swing.JFrame {
         quit.setMaximumSize(new java.awt.Dimension(90, 30));
         quit.setMinimumSize(new java.awt.Dimension(90, 30));
         quit.setPreferredSize(new java.awt.Dimension(90, 30));
+        quit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quitActionPerformed(evt);
+            }
+        });
         getContentPane().add(quit);
         quit.setBounds(460, 170, 90, 30);
 
@@ -3038,8 +3043,15 @@ public class SudokuGUI extends javax.swing.JFrame {
         } else {
             possibleScore = possibleScore - countWrong*MINUS_SCORE;
             sudokuScore.setText(Integer.toString(possibleScore));
+            endGame();
+            
         }
     }//GEN-LAST:event_submitActionPerformed
+
+    private void quitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitActionPerformed
+        possibleScore = 0;
+        endGame();
+    }//GEN-LAST:event_quitActionPerformed
 
     /**
      * @param args the command line arguments
