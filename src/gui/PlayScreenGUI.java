@@ -649,11 +649,11 @@ public class PlayScreenGUI extends javax.swing.JFrame {
 
         title.setText("HANGMAN");
         getContentPane().add(title);
-        title.setBounds(430, 10, 90, 20);
+        title.setBounds(430, 10, 90, 14);
 
         dateTime.setText("Date and Time");
         getContentPane().add(dateTime);
-        dateTime.setBounds(430, 30, 150, 20);
+        dateTime.setBounds(430, 30, 150, 14);
 
         leftArm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/leftarm.png"))); // NOI18N
         leftArm.setText("jLabel3");

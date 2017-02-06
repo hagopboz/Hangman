@@ -37,13 +37,19 @@ public class SudokuGUI extends javax.swing.JFrame {
     // each containing String "1" to "9", or empty String
     //private JTextField[][] tfCells = new JTextField[GRID_SIZE][GRID_SIZE];
     
-    static int [][] a = new int [9][9];
+    private int countWrong;
+    private int[][] board = new int[9][9];
+    private int possibleScore = 540;
+    private final int[][] ANSWER = {{8,3,5,4,1,6,9,2,7},{2,9,6,8,5,7,4,3,1},{4,1,7,2,9,3,6,5,8},
+                                    {5,6,7,1,3,4,7,8,2},{1,2,3,6,7,8,5,4,9},{7,4,8,5,2,9,1,6,3},
+                                    {6,5,2,7,8,1,3,9,4},{9,8,1,3,4,5,2,7,6},{3,7,4,9,6,2,8,1,5}};
+    private final int MAX_WRONG = 54;
+    private final int MINUS_SCORE = 10;
     
     /**
      * Creates new form SudokuGUI
      */
     public SudokuGUI(int finalScore) {
-        
         // Shows Info Frame when F1 is pressed
         getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
             KeyStroke.getKeyStroke(KeyEvent.VK_F1,0), "Info");
@@ -65,11 +71,13 @@ public class SudokuGUI extends javax.swing.JFrame {
                 System.exit(0);
             }
         });
-        
+        countWrong = 0;
         displayDateTimeSudoku();
         initComponents();
-        generate();
         setupSudoku();
+        initializeBoard();
+        hideAlert();
+        hideRetry();
     }
     
     /**
@@ -81,9 +89,12 @@ public class SudokuGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        alertSign = new javax.swing.JLabel();
+        retrySign = new javax.swing.JLabel();
         scoreLabel = new javax.swing.JLabel();
         title = new javax.swing.JLabel();
         dateTime = new javax.swing.JLabel();
+        sudokuScore = new javax.swing.JLabel();
         btn00 = new javax.swing.JTextField();
         btn01 = new javax.swing.JTextField();
         btn02 = new javax.swing.JTextField();
@@ -246,8 +257,8 @@ public class SudokuGUI extends javax.swing.JFrame {
         jLabel80 = new javax.swing.JLabel();
         jLabel81 = new javax.swing.JLabel();
         jLabel82 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        quit = new javax.swing.JButton();
+        submit = new javax.swing.JButton();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -259,9 +270,17 @@ public class SudokuGUI extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(600, 400));
         getContentPane().setLayout(null);
 
+        alertSign.setText("Invalie Input. Enter a number from 1 - 9.");
+        getContentPane().add(alertSign);
+        alertSign.setBounds(120, 110, 260, 80);
+
+        retrySign.setText("You got everything wrong. Please try again.");
+        getContentPane().add(retrySign);
+        retrySign.setBounds(120, 170, 310, 70);
+
         scoreLabel.setText("Score");
         getContentPane().add(scoreLabel);
-        scoreLabel.setBounds(440, 60, 39, 20);
+        scoreLabel.setBounds(440, 60, 27, 14);
 
         title.setText("Sudoku");
         title.setPreferredSize(new java.awt.Dimension(50, 20));
@@ -270,8 +289,14 @@ public class SudokuGUI extends javax.swing.JFrame {
 
         dateTime.setText("Date and Time");
         getContentPane().add(dateTime);
-        dateTime.setBounds(440, 40, 140, 20);
+        dateTime.setBounds(440, 40, 140, 14);
 
+        sudokuScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sudokuScore.setText("Sudoku Score");
+        getContentPane().add(sudokuScore);
+        sudokuScore.setBounds(430, 50, 150, 60);
+
+        btn00.setEditable(false);
         btn00.setBackground(java.awt.Color.black);
         btn00.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn00.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -318,6 +343,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         getContentPane().add(btn02);
         btn02.setBounds(50, 90, 40, 40);
 
+        btn03.setEditable(false);
         btn03.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn03.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         btn03.setBorder(null);
@@ -393,6 +419,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         getContentPane().add(btn07);
         btn07.setBounds(50, 290, 40, 40);
 
+        btn08.setEditable(false);
         btn08.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn08.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         btn08.setBorder(null);
@@ -438,6 +465,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         getContentPane().add(btn11);
         btn11.setBounds(90, 50, 40, 40);
 
+        btn12.setEditable(false);
         btn12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn12.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         btn12.setBorder(null);
@@ -483,6 +511,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         getContentPane().add(btn14);
         btn14.setBounds(90, 170, 40, 40);
 
+        btn15.setEditable(false);
         btn15.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn15.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         btn15.setBorder(null);
@@ -498,6 +527,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         getContentPane().add(btn15);
         btn15.setBounds(90, 210, 40, 40);
 
+        btn16.setEditable(false);
         btn16.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn16.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         btn16.setBorder(null);
@@ -588,6 +618,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         getContentPane().add(btn22);
         btn22.setBounds(130, 90, 40, 40);
 
+        btn23.setEditable(false);
         btn23.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn23.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         btn23.setBorder(null);
@@ -618,6 +649,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         getContentPane().add(btn24);
         btn24.setBounds(130, 170, 40, 40);
 
+        btn25.setEditable(false);
         btn25.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn25.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         btn25.setBorder(null);
@@ -633,6 +665,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         getContentPane().add(btn25);
         btn25.setBounds(130, 210, 40, 40);
 
+        btn26.setEditable(false);
         btn26.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn26.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         btn26.setBorder(null);
@@ -648,6 +681,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         getContentPane().add(btn26);
         btn26.setBounds(130, 250, 40, 40);
 
+        btn27.setEditable(false);
         btn27.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn27.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         btn27.setBorder(null);
@@ -678,6 +712,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         getContentPane().add(btn28);
         btn28.setBounds(130, 330, 40, 40);
 
+        btn30.setEditable(false);
         btn30.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn30.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         btn30.setBorder(null);
@@ -798,6 +833,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         getContentPane().add(btn37);
         btn37.setBounds(170, 290, 40, 40);
 
+        btn38.setEditable(false);
         btn38.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn38.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         btn38.setBorder(null);
@@ -858,6 +894,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         getContentPane().add(btn42);
         btn42.setBounds(210, 90, 40, 40);
 
+        btn43.setEditable(false);
         btn43.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn43.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         btn43.setBorder(null);
@@ -873,6 +910,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         getContentPane().add(btn43);
         btn43.setBounds(210, 130, 40, 40);
 
+        btn44.setEditable(false);
         btn44.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn44.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         btn44.setBorder(null);
@@ -888,6 +926,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         getContentPane().add(btn44);
         btn44.setBounds(210, 170, 40, 40);
 
+        btn45.setEditable(false);
         btn45.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn45.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         btn45.setBorder(null);
@@ -948,6 +987,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         getContentPane().add(btn48);
         btn48.setBounds(210, 330, 40, 40);
 
+        btn50.setEditable(false);
         btn50.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn50.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         btn50.setBorder(null);
@@ -1068,6 +1108,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         getContentPane().add(btn57);
         btn57.setBounds(250, 290, 40, 40);
 
+        btn58.setEditable(false);
         btn58.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn58.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         btn58.setBorder(null);
@@ -1098,6 +1139,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         getContentPane().add(btn60);
         btn60.setBounds(290, 10, 40, 40);
 
+        btn61.setEditable(false);
         btn61.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn61.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         btn61.setBorder(null);
@@ -1113,6 +1155,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         getContentPane().add(btn61);
         btn61.setBounds(290, 50, 40, 40);
 
+        btn62.setEditable(false);
         btn62.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn62.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         btn62.setBorder(null);
@@ -1128,6 +1171,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         getContentPane().add(btn62);
         btn62.setBounds(290, 90, 40, 40);
 
+        btn63.setEditable(false);
         btn63.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn63.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         btn63.setBorder(null);
@@ -1158,6 +1202,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         getContentPane().add(btn64);
         btn64.setBounds(290, 170, 40, 40);
 
+        btn65.setEditable(false);
         btn65.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn65.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         btn65.setBorder(null);
@@ -1248,6 +1293,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         getContentPane().add(btn71);
         btn71.setBounds(330, 50, 40, 40);
 
+        btn72.setEditable(false);
         btn72.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn72.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         btn72.setBorder(null);
@@ -1263,6 +1309,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         getContentPane().add(btn72);
         btn72.setBounds(330, 90, 40, 40);
 
+        btn73.setEditable(false);
         btn73.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn73.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         btn73.setBorder(null);
@@ -1308,6 +1355,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         getContentPane().add(btn75);
         btn75.setBounds(330, 210, 40, 40);
 
+        btn76.setEditable(false);
         btn76.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn76.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         btn76.setBorder(null);
@@ -1353,6 +1401,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         getContentPane().add(btn78);
         btn78.setBounds(330, 330, 40, 40);
 
+        btn80.setEditable(false);
         btn80.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn80.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         btn80.setBorder(null);
@@ -1428,6 +1477,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         getContentPane().add(btn84);
         btn84.setBounds(370, 170, 40, 40);
 
+        btn85.setEditable(false);
         btn85.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn85.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         btn85.setBorder(null);
@@ -1473,6 +1523,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         getContentPane().add(btn87);
         btn87.setBounds(370, 290, 40, 40);
 
+        btn88.setEditable(false);
         btn88.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn88.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         btn88.setBorder(null);
@@ -1812,24 +1863,24 @@ public class SudokuGUI extends javax.swing.JFrame {
         getContentPane().add(jLabel82);
         jLabel82.setBounds(370, 330, 40, 40);
 
-        jButton1.setText("Quit");
-        jButton1.setMaximumSize(new java.awt.Dimension(90, 30));
-        jButton1.setMinimumSize(new java.awt.Dimension(90, 30));
-        jButton1.setPreferredSize(new java.awt.Dimension(90, 30));
-        getContentPane().add(jButton1);
-        jButton1.setBounds(460, 170, 90, 30);
+        quit.setText("Quit");
+        quit.setMaximumSize(new java.awt.Dimension(90, 30));
+        quit.setMinimumSize(new java.awt.Dimension(90, 30));
+        quit.setPreferredSize(new java.awt.Dimension(90, 30));
+        getContentPane().add(quit);
+        quit.setBounds(460, 170, 90, 30);
 
-        jButton2.setText("Submit");
-        jButton2.setMaximumSize(new java.awt.Dimension(90, 30));
-        jButton2.setMinimumSize(new java.awt.Dimension(90, 30));
-        jButton2.setPreferredSize(new java.awt.Dimension(90, 30));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        submit.setText("Submit");
+        submit.setMaximumSize(new java.awt.Dimension(90, 30));
+        submit.setMinimumSize(new java.awt.Dimension(90, 30));
+        submit.setPreferredSize(new java.awt.Dimension(90, 30));
+        submit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                submitActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(460, 120, 90, 30);
+        getContentPane().add(submit);
+        submit.setBounds(460, 120, 90, 30);
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sudokuImages/water.png"))); // NOI18N
         background.setText("jLabel1");
@@ -1844,332 +1895,1149 @@ public class SudokuGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn00ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn00ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn00.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn00.setText(attempt);
+            board[0][0] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn00ActionPerformed
 
     private void btn01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn01ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn01.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn01.setText(attempt);
+            board[1][0] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn01ActionPerformed
 
     private void btn02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn02ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn02.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn02.setText(attempt);
+            board[2][0] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn02ActionPerformed
 
     private void btn03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn03ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn03.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn03.setText(attempt);
+            board[3][0] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn03ActionPerformed
 
     private void btn04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn04ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn04.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn04.setText(attempt);
+            board[4][0] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn04ActionPerformed
 
     private void btn05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn05ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn05.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn05.setText(attempt);
+            board[5][0] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn05ActionPerformed
 
     private void btn06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn06ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn06.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn06.setText(attempt);
+            board[6][0] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn06ActionPerformed
 
     private void btn07ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn07ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn07.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn07.setText(attempt);
+            board[7][0] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn07ActionPerformed
 
     private void btn08ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn08ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn08.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn08.setText(attempt);
+            board[8][0] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn08ActionPerformed
 
     private void btn10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn10ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn10.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn10.setText(attempt);
+            board[0][1] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn10ActionPerformed
 
     private void btn11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn11ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn11.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn11.setText(attempt);
+            board[1][1] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn11ActionPerformed
 
     private void btn12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn12ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn12.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn12.setText(attempt);
+            board[2][1] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn12ActionPerformed
 
     private void btn13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn13ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn13.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn13.setText(attempt);
+            board[3][1] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn13ActionPerformed
 
     private void btn14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn14ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn14.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn14.setText(attempt);
+            board[4][1] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn14ActionPerformed
 
     private void btn15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn15ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn15.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn15.setText(attempt);
+            board[5][1] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn15ActionPerformed
 
     private void btn16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn16ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn16.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn16.setText(attempt);
+            board[6][1] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn16ActionPerformed
 
     private void btn17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn17ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn17.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn17.setText(attempt);
+            board[7][1] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn17ActionPerformed
 
     private void btn18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn18ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn18.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn18.setText(attempt);
+            board[8][1] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn18ActionPerformed
 
     private void btn20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn20ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn20.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn20.setText(attempt);
+            board[0][2] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn20ActionPerformed
 
     private void btn21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn21ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn21.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn21.setText(attempt);
+            board[1][2] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn21ActionPerformed
 
     private void btn22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn22ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn22.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn22.setText(attempt);
+            board[2][2] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn22ActionPerformed
 
     private void btn23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn23ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn23.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn23.setText(attempt);
+            board[3][2] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn23ActionPerformed
 
     private void btn24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn24ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn24.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn24.setText(attempt);
+            board[4][2] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn24ActionPerformed
 
     private void btn25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn25ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn25.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn25.setText(attempt);
+            board[5][2] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn25ActionPerformed
 
     private void btn26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn26ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn26.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn26.setText(attempt);
+            board[6][2] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn26ActionPerformed
 
     private void btn27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn27ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn27.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn27.setText(attempt);
+            board[7][2] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn27ActionPerformed
 
     private void btn28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn28ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn28.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn28.setText(attempt);
+            board[8][2] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn28ActionPerformed
 
     private void btn30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn30ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn30.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn30.setText(attempt);
+            board[0][3] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn30ActionPerformed
 
     private void btn38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn38ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn38.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn38.setText(attempt);
+            board[8][3] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn38ActionPerformed
 
     private void btn37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn37ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn37.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn37.setText(attempt);
+            board[7][3] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn37ActionPerformed
 
     private void btn35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn35ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn35.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn35.setText(attempt);
+            board[5][3] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn35ActionPerformed
 
     private void btn33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn33ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn33.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn33.setText(attempt);
+            board[3][3] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn33ActionPerformed
 
     private void btn31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn31ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn31.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn31.setText(attempt);
+            board[1][3] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn31ActionPerformed
 
     private void btn32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn32ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn32.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn32.setText(attempt);
+            board[2][3] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn32ActionPerformed
 
     private void btn34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn34ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn34.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn34.setText(attempt);
+            board[4][3] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn34ActionPerformed
 
     private void btn36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn36ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn36.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn36.setText(attempt);
+            board[6][3] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn36ActionPerformed
 
     private void btn40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn40ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn40.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn40.setText(attempt);
+            board[0][4] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn40ActionPerformed
 
     private void btn48ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn48ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn48.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn48.setText(attempt);
+            board[8][4] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn48ActionPerformed
 
     private void btn47ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn47ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn47.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn47.setText(attempt);
+            board[7][4] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn47ActionPerformed
 
     private void btn45ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn45ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn45.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn45.setText(attempt);
+            board[5][4] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn45ActionPerformed
 
     private void btn43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn43ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn43.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn43.setText(attempt);
+            board[3][4] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn43ActionPerformed
 
     private void btn41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn41ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn41.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn41.setText(attempt);
+            board[1][4] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn41ActionPerformed
 
     private void btn42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn42ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn42.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn42.setText(attempt);
+            board[2][4] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn42ActionPerformed
 
     private void btn44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn44ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn44.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn44.setText(attempt);
+            board[4][4] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn44ActionPerformed
 
     private void btn46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn46ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn46.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn46.setText(attempt);
+            board[6][4] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn46ActionPerformed
 
     private void btn51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn51ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn51.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn51.setText(attempt);
+            board[1][5] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn51ActionPerformed
 
     private void btn55ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn55ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn55.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn55.setText(attempt);
+            board[5][5] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn55ActionPerformed
 
     private void btn53ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn53ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn53.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn53.setText(attempt);
+            board[3][5] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn53ActionPerformed
 
     private void btn58ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn58ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn58.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn58.setText(attempt);
+            board[8][5] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn58ActionPerformed
 
     private void btn57ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn57ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn57.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn57.setText(attempt);
+            board[7][5] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn57ActionPerformed
 
     private void btn56ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn56ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn56.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn56.setText(attempt);
+            board[6][5] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn56ActionPerformed
 
     private void btn50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn50ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn50.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn50.setText(attempt);
+            board[0][5] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn50ActionPerformed
 
     private void btn54ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn54ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn54.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn54.setText(attempt);
+            board[4][5] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn54ActionPerformed
 
     private void btn52ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn52ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn52.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn52.setText(attempt);
+            board[2][5] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn52ActionPerformed
 
     private void btn61ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn61ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn61.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn61.setText(attempt);
+            board[1][6] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn61ActionPerformed
 
     private void btn65ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn65ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn65.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn65.setText(attempt);
+            board[5][6] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn65ActionPerformed
 
     private void btn63ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn63ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn63.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn63.setText(attempt);
+            board[3][6] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn63ActionPerformed
 
     private void btn68ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn68ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn68.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn68.setText(attempt);
+            board[8][6] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn68ActionPerformed
 
     private void btn67ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn67ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn67.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn67.setText(attempt);
+            board[7][6] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn67ActionPerformed
 
     private void btn66ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn66ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn66.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn66.setText(attempt);
+            board[6][6] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn66ActionPerformed
 
     private void btn60ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn60ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn60.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn60.setText(attempt);
+            board[0][6] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn60ActionPerformed
 
     private void btn64ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn64ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn64.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn64.setText(attempt);
+            board[4][6] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn64ActionPerformed
 
     private void btn62ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn62ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn62.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn62.setText(attempt);
+            board[2][6] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn62ActionPerformed
 
     private void btn70ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn70ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn70.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn70.setText(attempt);
+            board[0][7] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn70ActionPerformed
 
     private void btn74ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn74ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn74.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn74.setText(attempt);
+            board[4][7] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn74ActionPerformed
 
     private void btn73ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn73ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn73.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn73.setText(attempt);
+            board[3][7] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn73ActionPerformed
 
     private void btn77ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn77ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn77.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn77.setText(attempt);
+            board[7][7] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn77ActionPerformed
 
     private void btn75ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn75ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn75.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn75.setText(attempt);
+            board[5][7] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn75ActionPerformed
 
     private void btn76ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn76ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn76.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn76.setText(attempt);
+            board[6][7] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn76ActionPerformed
 
     private void btn72ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn72ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn72.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn72.setText(attempt);
+            board[2][7] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn72ActionPerformed
 
     private void btn71ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn71ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn71.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn71.setText(attempt);
+            board[1][7] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn71ActionPerformed
 
     private void btn78ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn78ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn78.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn78.setText(attempt);
+            board[8][7] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn78ActionPerformed
 
     private void btn82ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn82ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn82.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn82.setText(attempt);
+            board[2][8] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn82ActionPerformed
 
     private void btn86ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn86ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn86.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn86.setText(attempt);
+            board[6][8] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn86ActionPerformed
 
     private void btn81ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn81ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn81.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn81.setText(attempt);
+            board[1][8] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn81ActionPerformed
 
     private void btn87ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn87ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn87.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn87.setText(attempt);
+            board[7][8] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn87ActionPerformed
 
     private void btn80ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn80ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn80.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn80.setText(attempt);
+            board[0][8] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn80ActionPerformed
 
     private void btn83ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn83ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn83.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn83.setText(attempt);
+            board[3][8] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn83ActionPerformed
 
     private void btn85ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn85ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn85.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn85.setText(attempt);
+            board[5][8] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn85ActionPerformed
 
     private void btn84ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn84ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn84.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn84.setText(attempt);
+            board[4][8] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn84ActionPerformed
 
     private void btn88ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn88ActionPerformed
-        // TODO add your handling code here:
+        hideRetry();
+        String attempt = btn88.getText();
+        boolean success = checkAttempt(attempt);
+        if (!success)
+            showAlert();
+        else {
+            int tempAnswer = convertToInt(attempt);
+            btn88.setText(attempt);
+            board[8][8] = tempAnswer;
+            hideAlert();
+        }
     }//GEN-LAST:event_btn88ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
+        compareAnswers();
+        if (countWrong == MAX_WRONG) {
+            retrySign.setVisible(true);
+            reset();
+        } else {
+            possibleScore = possibleScore - countWrong*MINUS_SCORE;
+            sudokuScore.setText(Integer.toString(possibleScore));
+        }
+    }//GEN-LAST:event_submitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2206,15 +3074,87 @@ public class SudokuGUI extends javax.swing.JFrame {
         });
     }   
     
+    // method: initializeBoard
+    // purpose: initialize the board by putting zeros except clues
+    public void initializeBoard() {
+        for (int i = 0; i < 9; ++i) {
+            for (int j = 0; j < 9; ++j) {
+                if (i == 0 && j == 0)
+                    board[i][j] = ANSWER[i][j];
+                else if(i == 3 && j == 0)
+                    board[i][j] = ANSWER[i][j];
+                else if(i == 8 && j == 0)
+                    board[i][j] = ANSWER[i][j];
+                else if(i == 2 && j == 1)
+                    board[i][j] = ANSWER[i][j];
+                else if(i == 5 && j == 1)
+                    board[i][j] = ANSWER[i][j];
+                else if(i == 6 && j == 1)
+                    board[i][j] = ANSWER[i][j];
+                else if(i == 3 && j == 2)
+                    board[i][j] = ANSWER[i][j];
+                else if(i == 5 && j == 2)
+                    board[i][j] = ANSWER[i][j];
+                else if(i == 6 && j == 2)
+                    board[i][j] = ANSWER[i][j];
+                else if(i == 7 && j == 2)
+                    board[i][j] = ANSWER[i][j];
+                else if(i == 0 && j == 3)
+                    board[i][j] = ANSWER[i][j];
+                else if(i == 8 && j == 3)
+                    board[i][j] = ANSWER[i][j];
+                else if(i == 3 && j == 4)
+                    board[i][j] = ANSWER[i][j];
+                else if(i == 4 && j == 4)
+                    board[i][j] = ANSWER[i][j];
+                else if(i == 5 && j == 4)
+                    board[i][j] = ANSWER[i][j];
+                else if(i == 0 && j == 5)
+                    board[i][j] = ANSWER[i][j];
+                else if(i == 8 && j == 5)
+                    board[i][j] = ANSWER[i][j];
+                else if(i == 1 && j == 6)
+                    board[i][j] = ANSWER[i][j];
+                else if(i == 2 && j == 6)
+                    board[i][j] = ANSWER[i][j];
+                else if(i == 3 && j == 6)
+                    board[i][j] = ANSWER[i][j];
+                else if(i == 5 && j == 6)
+                    board[i][j] = ANSWER[i][j];
+                else if(i == 2 && j == 7)
+                    board[i][j] = ANSWER[i][j];
+                else if(i == 3 && j == 7)
+                    board[i][j] = ANSWER[i][j];
+                else if(i == 6 && j == 7)
+                    board[i][j] = ANSWER[i][j];
+                else if(i == 0 && j == 8)
+                    board[i][j] = ANSWER[i][j];
+                else if(i == 5 && j == 8)
+                    board[i][j] = ANSWER[i][j];
+                else if(i == 8 && j == 8)
+                    board[i][j] = ANSWER[i][j];
+                else
+                    board[i][j] = 0;
+                
+            }
+        }
+    }
+    
+    // method:
+    // purpose:
     public int getFinalScore() {
         return finalScore;
     }
     
+    // method: 
+    // purpose:
     public void setScore(int finalScore) {
         String displayScore = Integer.toString(finalScore);
         scoreLabel.setText(displayScore);
     }
     
+    // method:
+    // purpose:
     public void endGame() {
         EndScreen endScreen = new EndScreen(getFinalScore());
         this.setVisible(false);
@@ -2222,356 +3162,93 @@ public class SudokuGUI extends javax.swing.JFrame {
         endScreen.setVisible(true);
     }
     
-    public static void generate() {
-        int k=1,n=1;
-        for(int i=0;i<9;i++) {
-           k=n;
-            for(int j=0;j<9;j++) {
-                if(k<=9){
-                    a[i][j]=k;
-                    k++;
-                }else{
-                    k=1;
-                    a[i][j]=k;
-                    k++;
-                }
-            }
-            n=k+3;
-            if(k==10){
-                n=4;
-            }
-            if(n>9) {
-                n=(n%9)+1;
-            }
-        }   
-    }
-    public static void random_gen(int check){
-        int k1,k2,max=2,min=0;
-        Random r= new Random();
-        for(int i=0;i<3;i++) { //There are three groups.So we are using for loop three times.
-            k1=r.nextInt(max-min+1)+min; //This while is just to ensure k1 is not equal to k2.
-            do{
-                k2=r.nextInt(max-min+1)+min;
-            }while(k1==k2);
-            max+=3;min+=3; 
-            if(check==1) {//calling a function to interchange the selected rows.
-                permutation_row(k1,k2);
-            } else if(check==0) {
-                permutation_col(k1,k2);
+    // method: compareAnswers
+    // purpose: compare user's answer with the actual answer
+    public void compareAnswers() {
+        for(int i = 0; i < 9; i++) {
+            for(int j = 0; j < 9; j++) {
+                if(board[i][j] != ANSWER[i][j])
+                    countWrong = countWrong + 1;
             }
         }
     }
-    public static void permutation_row(int k1,int k2){
-        int temp;//k1 and k2 are two rows that we are selecting to interchange.
-        for(int j=0;j<9;j++) {
-            temp=a[k1][j];
-            a[k1][j]=a[k2][j];
-            a[k2][j]=temp;
-        }
+    
+    // method: reset
+    // purpose: reset the countWrong to zero when the user gets everything wrong
+    public void reset(){
+        countWrong = 0;
     }
-    public static void permutation_col(int k1,int k2){
-        int temp;
-        for(int j=0;j<9;j++) {
-            temp=a[j][k1];
-            a[j][k1]=a[j][k2];
-            a[j][k2]=temp;
+    
+    // method: checkAttempt
+    // purpose: check if user enters valid input, valid inputs are from 1 - 9
+    public boolean checkAttempt(String attempt){
+        boolean success = false;
+        if (attempt.equals("1") || attempt.equals("2") || attempt.equals("3")|| 
+                attempt.equals("4")|| attempt.equals("5")|| attempt.equals("6")
+                    || attempt.equals("7")|| attempt.equals("8")|| attempt.equals("9")) {
+            success = true;
         }
-    }        
-    public static void row_change(int k1,int k2) {
-        int temp;
-        for(int n=1;n<=3;n++) {
-            for(int i=0;i<9;i++) {
-                temp=a[k1][i];
-                a[k1][i]=a[k2][i];
-                a[k2][i]=temp;
-            }
-            k1++;
-            k2++;
-        }
+        return success;
     }
-    public static void col_change(int k1,int k2) {
-        int temp;
-        for(int n=1;n<=3;n++) {
-          for(int i=0;i<9;i++) {
-                temp=a[i][k1];
-                a[i][k1]=a[i][k2];
-                a[i][k2]=temp;
-            }
-            k1++;
-            k2++;
-        }
+    
+    // method: convertToInt
+    // purpose: returns user's input as an integer to place on the board
+    public int convertToInt(String attempt) {
+        int answer = Integer.parseInt(attempt);
+        return answer;
     }
-    public int rndmNumber(){
-        Random rand = new Random();
-        int  n = rand.nextInt(50) + 1;
-        return n % 3;
+    
+    // method: showAlert
+    // purpose: show the alert label
+    public void showAlert() {
+        alertSign.setVisible(true);
     }
+    
+    // method: hideRetry
+    // purpose: hide the retry label
+    public void hideRetry() {
+        retrySign.setVisible(false);
+    }
+    
+    // method: hideAlert
+    // purpose: hide the alert sign label
+    public void hideAlert(){
+        alertSign.setVisible(false);
+    }  
+    
+    // method: setupSudoku
+    // purpose: initialize the sudoku by providing clues
     public void setupSudoku() {
-        generate();
-        random_gen(1);
-        random_gen(0);
-
-        if (rndmNumber() == 1) {
-        btn00.setText(Integer.toString(a[0][0]));
-        }
-        if (rndmNumber() == 1) {
-        btn01.setText(Integer.toString(a[0][1]));
-        }
-        if (rndmNumber() == 1) {
-        btn02.setText(Integer.toString(a[0][2]));
-        }
-        if (rndmNumber() == 1) {
-        btn03.setText(Integer.toString(a[0][3]));
-        }
-        if (rndmNumber() == 1) {
-        btn04.setText(Integer.toString(a[0][4]));
-        }
-        if (rndmNumber() == 1) {
-        btn05.setText(Integer.toString(a[0][5]));
-        }
-        if (rndmNumber() == 1) {
-        btn06.setText(Integer.toString(a[0][6]));
-        }
-        if (rndmNumber() == 1) {
-        btn07.setText(Integer.toString(a[0][7]));
-        }
-        if (rndmNumber() == 1){
-        btn08.setText(Integer.toString(a[0][8]));
-        }
-        
-        if (rndmNumber() == 1) {
-        btn10.setText(Integer.toString(a[1][0]));
-        }
-        if (rndmNumber() == 1) {
-        btn11.setText(Integer.toString(a[1][1]));
-        }
-        if (rndmNumber() == 1) {
-        btn12.setText(Integer.toString(a[1][2]));
-        }
-        if (rndmNumber() == 1) {
-        btn13.setText(Integer.toString(a[1][3]));
-        }
-        if (rndmNumber() == 1) {
-        btn14.setText(Integer.toString(a[1][4]));
-        }
-        if (rndmNumber() == 1) {
-        btn15.setText(Integer.toString(a[1][5]));
-        }
-        if (rndmNumber() == 1) {
-        btn16.setText(Integer.toString(a[1][6]));
-        }
-        if (rndmNumber() == 1) {
-        btn17.setText(Integer.toString(a[1][7]));
-        }
-        if (rndmNumber() == 1) {
-        btn18.setText(Integer.toString(a[1][8]));
-        }
-        
-        
-        if (rndmNumber() == 1) {
-        btn20.setText(Integer.toString(a[2][0]));
-        }
-        if (rndmNumber() == 1) {
-        btn21.setText(Integer.toString(a[2][1]));
-        }
-        if (rndmNumber() == 1) {
-        btn22.setText(Integer.toString(a[2][2]));
-        }
-        if (rndmNumber() == 1) {
-        btn23.setText(Integer.toString(a[2][3]));
-        }
-        if (rndmNumber() == 1) {
-        btn24.setText(Integer.toString(a[2][4]));
-        }
-        if (rndmNumber() == 1) {
-        btn25.setText(Integer.toString(a[2][5]));
-        }
-        if (rndmNumber() == 1) {
-        btn26.setText(Integer.toString(a[2][6]));
-        }
-        if (rndmNumber() == 1) {
-        btn27.setText(Integer.toString(a[2][7]));
-        }
-        if (rndmNumber() == 1) {
-        btn28.setText(Integer.toString(a[2][8]));
-        }
-        
-        
-        if (rndmNumber() == 1) {
-        btn30.setText(Integer.toString(a[3][0]));
-        }
-        if (rndmNumber() == 1) {
-        btn31.setText(Integer.toString(a[3][1]));
-        }
-        if (rndmNumber() == 1) {
-        btn32.setText(Integer.toString(a[3][2]));
-        }
-        if (rndmNumber() == 1) {
-        btn33.setText(Integer.toString(a[3][3]));
-        }
-        if (rndmNumber() == 1) {
-        btn34.setText(Integer.toString(a[3][4]));
-        }
-        if (rndmNumber() == 1) {
-        btn35.setText(Integer.toString(a[3][5]));
-        }
-        if (rndmNumber() == 1) {
-        btn36.setText(Integer.toString(a[3][6]));
-        }
-        if (rndmNumber() == 1) {
-        btn37.setText(Integer.toString(a[3][7]));
-        }
-        if (rndmNumber() == 1) {
-        btn38.setText(Integer.toString(a[3][8]));
-        }
-
-        
-        if (rndmNumber() == 1) {
-        btn40.setText(Integer.toString(a[4][0]));
-        }
-        if (rndmNumber() == 1) {
-        btn41.setText(Integer.toString(a[4][1]));
-        }
-        if (rndmNumber() == 1) {
-        btn42.setText(Integer.toString(a[4][2]));
-        }
-        if (rndmNumber() == 1) {
-        btn43.setText(Integer.toString(a[4][3]));
-        }
-        if (rndmNumber() == 1) {
-        btn44.setText(Integer.toString(a[4][4]));
-        }
-        if (rndmNumber() == 1) {
-        btn45.setText(Integer.toString(a[4][5]));
-        }
-        if (rndmNumber() == 1) {
-        btn46.setText(Integer.toString(a[4][6]));
-        }
-        if (rndmNumber() == 1) {
-        btn47.setText(Integer.toString(a[4][7]));
-        }
-        if (rndmNumber() == 1) {
-        btn48.setText(Integer.toString(a[4][8]));
-        }
-        
-
-        if (rndmNumber() == 1) {
-        btn50.setText(Integer.toString(a[5][0]));
-        }
-        if (rndmNumber() == 1) {
-        btn51.setText(Integer.toString(a[5][1]));
-        }
-        if (rndmNumber() == 1) {
-        btn52.setText(Integer.toString(a[5][2]));
-        }
-        if (rndmNumber() == 1) {
-        btn53.setText(Integer.toString(a[5][3]));
-        }
-        if (rndmNumber() == 1) {
-        btn54.setText(Integer.toString(a[5][4]));
-        }
-        if (rndmNumber() == 1) {
-        btn55.setText(Integer.toString(a[5][5]));
-        }
-        if (rndmNumber() == 1) {
-        btn56.setText(Integer.toString(a[5][6]));
-        }
-        if (rndmNumber() == 1) {
-        btn57.setText(Integer.toString(a[5][7]));
-        }
-        if (rndmNumber() == 1) {
-        btn58.setText(Integer.toString(a[5][8]));
-        }
-        
-
-        if (rndmNumber() == 1) {
-        btn60.setText(Integer.toString(a[6][0]));
-        }
-        if (rndmNumber() == 1) {
-        btn61.setText(Integer.toString(a[6][1]));
-        }
-        if (rndmNumber() == 1) {
-        btn62.setText(Integer.toString(a[6][2]));
-        }
-        if (rndmNumber() == 1) {
-        btn63.setText(Integer.toString(a[6][3]));
-        }
-        if (rndmNumber() == 1) {
-        btn64.setText(Integer.toString(a[6][4]));
-        }
-        if (rndmNumber() == 1) {
-        btn65.setText(Integer.toString(a[6][5]));
-        }
-        if (rndmNumber() == 1) {
-        btn66.setText(Integer.toString(a[6][6]));
-        }
-        if (rndmNumber() == 1) {
-        btn67.setText(Integer.toString(a[6][7]));
-        }
-        if (rndmNumber() == 1) {
-        btn68.setText(Integer.toString(a[6][8]));
-        }
-        
-
-        if (rndmNumber() == 1) {
-        btn70.setText(Integer.toString(a[7][0]));
-        }
-        if (rndmNumber() == 1) {
-        btn71.setText(Integer.toString(a[7][1]));
-        }
-        if (rndmNumber() == 1) {
-        btn72.setText(Integer.toString(a[7][2]));
-        }
-        if (rndmNumber() == 1) {
-        btn73.setText(Integer.toString(a[7][3]));
-        }
-        if (rndmNumber() == 1) {
-        btn74.setText(Integer.toString(a[7][4]));
-        }
-        if (rndmNumber() == 1) {
-        btn75.setText(Integer.toString(a[7][5]));
-        }
-        if (rndmNumber() == 1) {
-        btn76.setText(Integer.toString(a[7][6]));
-        }
-        if (rndmNumber() == 1) {
-        btn77.setText(Integer.toString(a[7][7]));
-        }
-        if (rndmNumber() == 1) {
-        btn78.setText(Integer.toString(a[7][8]));
-        }
-        
-
-        if (rndmNumber() == 1) {
-        btn80.setText(Integer.toString(a[8][0]));
-        }
-        if (rndmNumber() == 1) {
-        btn81.setText(Integer.toString(a[8][1]));
-        }
-        if (rndmNumber() == 1) {
-        btn82.setText(Integer.toString(a[8][2]));
-        }
-        if (rndmNumber() == 1) {
-        btn83.setText(Integer.toString(a[8][3]));
-        }
-        if (rndmNumber() == 1) {
-        btn84.setText(Integer.toString(a[8][4]));
-        }
-        if (rndmNumber() == 1) {
-        btn85.setText(Integer.toString(a[8][5]));
-        }
-        if (rndmNumber() == 1) {
-        btn86.setText(Integer.toString(a[8][6]));
-        }
-        if (rndmNumber() == 1) {
-        btn87.setText(Integer.toString(a[8][7]));
-        }
-        if (rndmNumber() == 1) {
-        btn88.setText(Integer.toString(a[8][8]));
-        }
+       btn00.setText(Integer.toString(ANSWER[0][0]));
+       btn03.setText(Integer.toString(ANSWER[3][0]));
+       btn08.setText(Integer.toString(ANSWER[8][0]));
+       btn12.setText(Integer.toString(ANSWER[2][1]));
+       btn15.setText(Integer.toString(ANSWER[5][1]));
+       btn16.setText(Integer.toString(ANSWER[6][1]));
+       btn23.setText(Integer.toString(ANSWER[3][2]));
+       btn25.setText(Integer.toString(ANSWER[5][2]));
+       btn26.setText(Integer.toString(ANSWER[6][2]));
+       btn27.setText(Integer.toString(ANSWER[7][2]));
+       btn30.setText(Integer.toString(ANSWER[0][3]));
+       btn38.setText(Integer.toString(ANSWER[8][3]));
+       btn43.setText(Integer.toString(ANSWER[3][4]));
+       btn44.setText(Integer.toString(ANSWER[4][4]));
+       btn45.setText(Integer.toString(ANSWER[5][4]));
+       btn50.setText(Integer.toString(ANSWER[0][5]));
+       btn58.setText(Integer.toString(ANSWER[8][5]));
+       btn61.setText(Integer.toString(ANSWER[1][6]));
+       btn62.setText(Integer.toString(ANSWER[2][6]));
+       btn63.setText(Integer.toString(ANSWER[3][6]));
+       btn65.setText(Integer.toString(ANSWER[5][6]));
+       btn72.setText(Integer.toString(ANSWER[2][7]));
+       btn73.setText(Integer.toString(ANSWER[3][7]));
+       btn76.setText(Integer.toString(ANSWER[6][7]));
+       btn80.setText(Integer.toString(ANSWER[0][8]));
+       btn85.setText(Integer.toString(ANSWER[5][8]));
+       btn88.setText(Integer.toString(ANSWER[8][8]));                 
     }
 
-// method: displayDateTime
+    // method: displayDateTime
     // purpose: display current time and date. Update each second.
     public void displayDateTimeSudoku() {
         final DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
@@ -2591,6 +3268,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         timer.start();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel alertSign;
     private javax.swing.JLabel background;
     private javax.swing.JTextField btn00;
     private javax.swing.JTextField btn01;
@@ -2674,8 +3352,6 @@ public class SudokuGUI extends javax.swing.JFrame {
     private javax.swing.JTextField btn87;
     private javax.swing.JTextField btn88;
     private javax.swing.JLabel dateTime;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel00;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -2757,7 +3433,11 @@ public class SudokuGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel81;
     private javax.swing.JLabel jLabel82;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JButton quit;
+    private javax.swing.JLabel retrySign;
     private javax.swing.JLabel scoreLabel;
+    private javax.swing.JButton submit;
+    private javax.swing.JLabel sudokuScore;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }
