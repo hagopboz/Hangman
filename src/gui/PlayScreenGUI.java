@@ -83,6 +83,33 @@ public class PlayScreenGUI extends javax.swing.JFrame {
         //colorGame = new ColorGameGUI(finalScore);
         initComponents();
         buttonSkip.setToolTipText("Click to skip to Color Game.");
+        buttonA.setToolTipText("A");
+        buttonB.setToolTipText("B");
+        buttonC.setToolTipText("C");
+        buttonD.setToolTipText("D");
+        buttonE.setToolTipText("E");
+        buttonF.setToolTipText("F");
+        buttonG.setToolTipText("G");
+        buttonH.setToolTipText("H");
+        buttonI.setToolTipText("I");
+        buttonJ.setToolTipText("J");
+        buttonK.setToolTipText("K");
+        buttonL.setToolTipText("L");
+        buttonM.setToolTipText("M");
+        buttonN.setToolTipText("N");
+        buttonO.setToolTipText("O");
+        buttonP.setToolTipText("P");
+        buttonQ.setToolTipText("Q");
+        buttonR.setToolTipText("R");
+        buttonS.setToolTipText("S");
+        buttonT.setToolTipText("T");
+        buttonU.setToolTipText("U");
+        buttonV.setToolTipText("V");
+        buttonW.setToolTipText("W");
+        buttonX.setToolTipText("X");
+        buttonY.setToolTipText("Y");
+        buttonZ.setToolTipText("Z");
+      
         displayDateTime();
         startGame();
         
