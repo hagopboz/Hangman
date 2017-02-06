@@ -74,6 +74,8 @@ public class SudokuGUI extends javax.swing.JFrame {
         countWrong = 0;
         displayDateTimeSudoku();
         initComponents();
+        quit.setToolTipText("Click to exit the game and go to the end game screen.");
+        submit.setToolTipText("Click to submit your answers to review.");
         setupSudoku();
         initializeBoard();
         hideAlert();
