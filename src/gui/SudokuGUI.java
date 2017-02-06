@@ -40,8 +40,9 @@ public class SudokuGUI extends javax.swing.JFrame {
     private int countWrong;
     private int[][] board = new int[9][9];
     private int possibleScore = 540;
+    static  int finalScore;
     private final int[][] ANSWER = {{8,3,5,4,1,6,9,2,7},{2,9,6,8,5,7,4,3,1},{4,1,7,2,9,3,6,5,8},
-                                    {5,6,7,1,3,4,7,8,2},{1,2,3,6,7,8,5,4,9},{7,4,8,5,2,9,1,6,3},
+                                    {5,6,9,1,3,4,7,8,2},{1,2,3,6,7,8,5,4,9},{7,4,8,5,2,9,1,6,3},
                                     {6,5,2,7,8,1,3,9,4},{9,8,1,3,4,5,2,7,6},{3,7,4,9,6,2,8,1,5}};
     private final int MAX_WRONG = 54;
     private final int MINUS_SCORE = 10;
@@ -71,6 +72,7 @@ public class SudokuGUI extends javax.swing.JFrame {
                 System.exit(0);
             }
         });
+        this.finalScore = finalScore;
         countWrong = 0;
         displayDateTimeSudoku();
         initComponents();
@@ -261,6 +263,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         jLabel82 = new javax.swing.JLabel();
         quit = new javax.swing.JButton();
         submit = new javax.swing.JButton();
+        jTextArea1 = new javax.swing.JTextArea();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -272,13 +275,18 @@ public class SudokuGUI extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(600, 400));
         getContentPane().setLayout(null);
 
-        alertSign.setText("Invalie Input. Enter a number from 1 - 9.");
+        alertSign.setBackground(new java.awt.Color(255, 255, 255));
+        alertSign.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        alertSign.setForeground(new java.awt.Color(255, 0, 0));
+        alertSign.setText("INVALID INPUT. Enter a number from 1 - 9.");
         getContentPane().add(alertSign);
-        alertSign.setBounds(120, 110, 260, 80);
+        alertSign.setBounds(80, 140, 360, 30);
 
+        retrySign.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        retrySign.setForeground(new java.awt.Color(255, 0, 0));
         retrySign.setText("You got everything wrong. Please try again.");
         getContentPane().add(retrySign);
-        retrySign.setBounds(120, 170, 310, 70);
+        retrySign.setBounds(80, 190, 310, 70);
 
         scoreLabel.setText("Score");
         getContentPane().add(scoreLabel);
@@ -294,7 +302,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         dateTime.setBounds(440, 40, 140, 14);
 
         sudokuScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        sudokuScore.setText("Sudoku Score");
+        sudokuScore.setText("Current Score");
         getContentPane().add(sudokuScore);
         sudokuScore.setBounds(430, 50, 150, 60);
 
@@ -1889,6 +1897,15 @@ public class SudokuGUI extends javax.swing.JFrame {
         getContentPane().add(submit);
         submit.setBounds(460, 120, 90, 30);
 
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
+        jTextArea1.setRows(5);
+        jTextArea1.setText("Instructions:\nAfter entering number,\npress the return/enter\nkey to confirm input");
+        jTextArea1.setOpaque(false);
+        getContentPane().add(jTextArea1);
+        jTextArea1.setBounds(430, 210, 264, 89);
+
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sudokuImages/water.png"))); // NOI18N
         background.setText("jLabel1");
         background.setMaximumSize(new java.awt.Dimension(600, 400));
@@ -3041,7 +3058,7 @@ public class SudokuGUI extends javax.swing.JFrame {
             retrySign.setVisible(true);
             reset();
         } else {
-            possibleScore = possibleScore - countWrong*MINUS_SCORE;
+            finalScore = finalScore + (possibleScore - countWrong*MINUS_SCORE);
             sudokuScore.setText(Integer.toString(possibleScore));
             endGame();
             
@@ -3447,6 +3464,7 @@ public class SudokuGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel81;
     private javax.swing.JLabel jLabel82;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton quit;
     private javax.swing.JLabel retrySign;
     private javax.swing.JLabel scoreLabel;
