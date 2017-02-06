@@ -246,6 +246,8 @@ public class SudokuGUI extends javax.swing.JFrame {
         jLabel80 = new javax.swing.JLabel();
         jLabel81 = new javax.swing.JLabel();
         jLabel82 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1810,6 +1812,25 @@ public class SudokuGUI extends javax.swing.JFrame {
         getContentPane().add(jLabel82);
         jLabel82.setBounds(370, 330, 40, 40);
 
+        jButton1.setText("Quit");
+        jButton1.setMaximumSize(new java.awt.Dimension(90, 30));
+        jButton1.setMinimumSize(new java.awt.Dimension(90, 30));
+        jButton1.setPreferredSize(new java.awt.Dimension(90, 30));
+        getContentPane().add(jButton1);
+        jButton1.setBounds(460, 170, 90, 30);
+
+        jButton2.setText("Submit");
+        jButton2.setMaximumSize(new java.awt.Dimension(90, 30));
+        jButton2.setMinimumSize(new java.awt.Dimension(90, 30));
+        jButton2.setPreferredSize(new java.awt.Dimension(90, 30));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2);
+        jButton2.setBounds(460, 120, 90, 30);
+
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sudokuImages/water.png"))); // NOI18N
         background.setText("jLabel1");
         background.setMaximumSize(new java.awt.Dimension(600, 400));
@@ -2145,6 +2166,10 @@ public class SudokuGUI extends javax.swing.JFrame {
     private void btn88ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn88ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn88ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2649,6 +2674,8 @@ public class SudokuGUI extends javax.swing.JFrame {
     private javax.swing.JTextField btn87;
     private javax.swing.JTextField btn88;
     private javax.swing.JLabel dateTime;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel00;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
