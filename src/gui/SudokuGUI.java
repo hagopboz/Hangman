@@ -98,7 +98,6 @@ public class SudokuGUI extends javax.swing.JFrame {
         scoreLabel = new javax.swing.JLabel();
         title = new javax.swing.JLabel();
         dateTime = new javax.swing.JLabel();
-        sudokuScore = new javax.swing.JLabel();
         btn00 = new javax.swing.JTextField();
         btn01 = new javax.swing.JTextField();
         btn02 = new javax.swing.JTextField();
@@ -290,7 +289,7 @@ public class SudokuGUI extends javax.swing.JFrame {
 
         scoreLabel.setText("Score");
         getContentPane().add(scoreLabel);
-        scoreLabel.setBounds(440, 60, 27, 14);
+        scoreLabel.setBounds(440, 60, 52, 26);
 
         title.setText("Sudoku");
         title.setPreferredSize(new java.awt.Dimension(50, 20));
@@ -299,12 +298,7 @@ public class SudokuGUI extends javax.swing.JFrame {
 
         dateTime.setText("Date and Time");
         getContentPane().add(dateTime);
-        dateTime.setBounds(440, 40, 140, 14);
-
-        sudokuScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        sudokuScore.setText("Current Score");
-        getContentPane().add(sudokuScore);
-        sudokuScore.setBounds(430, 50, 150, 60);
+        dateTime.setBounds(440, 40, 140, 26);
 
         btn00.setEditable(false);
         btn00.setBackground(java.awt.Color.black);
@@ -3059,7 +3053,6 @@ public class SudokuGUI extends javax.swing.JFrame {
             reset();
         } else {
             finalScore = finalScore + (possibleScore - countWrong*MINUS_SCORE);
-            sudokuScore.setText(Integer.toString(possibleScore));
             endGame();
             
         }
@@ -3469,7 +3462,6 @@ public class SudokuGUI extends javax.swing.JFrame {
     private javax.swing.JLabel retrySign;
     private javax.swing.JLabel scoreLabel;
     private javax.swing.JButton submit;
-    private javax.swing.JLabel sudokuScore;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }
