@@ -80,6 +80,11 @@ public class ColorGameGUI extends javax.swing.JFrame {
         displayDateTimeColor();
         initializePositions();
         initComponents();
+        blueBtn.setToolTipText("Choose blue as your answer.");
+        redBtn.setToolTipText("Choose red as your answer.");
+        greenBtn.setToolTipText("Choose green as your answer.");
+        purpleBtn.setToolTipText("Choose purple as your answer.");
+        yellowBtn.setToolTipText("Choose yellow as your answer.");
         placeButtons();
         setWord();
         setColor();
