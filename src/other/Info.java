@@ -73,6 +73,7 @@ public class Info extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         closeButton.setText("Close");
+        closeButton.setToolTipText("Close info window...");
         closeButton.setPreferredSize(new java.awt.Dimension(75, 33));
         closeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
