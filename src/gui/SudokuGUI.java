@@ -1919,6 +1919,9 @@ public class SudokuGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    // method: butn##ActionPerformed
+    // purpose: for all of the following, if user clicks and enters
+    // his/her guess, it starts the game cycle
     private void btn00ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn00ActionPerformed
         hideRetry();
         String attempt = btn00.getText();
@@ -3052,7 +3055,10 @@ public class SudokuGUI extends javax.swing.JFrame {
             hideAlert();
         }
     }//GEN-LAST:event_btn88ActionPerformed
-
+    // method: submitActionPerformed
+    // purpose: when user clicks the submit button, it checks if the user got
+    // some answer right then move on to end screen; if not, it asks the user 
+    // to try again.
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
         compareAnswers();
         if (countWrong == MAX_WRONG) {
@@ -3064,7 +3070,8 @@ public class SudokuGUI extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_submitActionPerformed
-
+    // method: quitActionPerformed
+    // purpose: quits the game when uer clicks the quit button
     private void quitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitActionPerformed
         possibleScore = 0;
         endGame();

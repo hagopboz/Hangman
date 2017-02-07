@@ -47,6 +47,7 @@ public class ColorGameGUI extends javax.swing.JFrame {
     Color[] color;//Creates an array of colors for the color of the word.
     Color chosenColor;//Color of current word being displayed.
     private boolean[][] possiblePositions; //possible positions that buttons can be placed.
+    
     /**
      * Creates new form ColorGameGUI
      */
@@ -297,6 +298,10 @@ public class ColorGameGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    // method: colorBtnActionPerformed
+    // purpose: for all of the following, if a button is cliked
+    // it sends the corresponding color to the game cycle and start
+    // the game cycle
     private void purpleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purpleBtnActionPerformed
         gameCycle(Color.MAGENTA);
     }//GEN-LAST:event_purpleBtnActionPerformed
@@ -330,11 +335,13 @@ public class ColorGameGUI extends javax.swing.JFrame {
         int randomIndex = rand.nextInt(5);
         return chosenWord = COLORS[randomIndex];
     }
+    
     // method: setWord
     // purpose: Changes the label to the new word generated.
     public void setWord() {
         colorWord.setText(chooseWord());
     }
+    
     // method: setColor
     // purpose: Sets the colors in the array, randomly selects one, and changes 
     // forground of the Color word to the color generated.
@@ -362,12 +369,14 @@ public class ColorGameGUI extends javax.swing.JFrame {
         sudoku.setVisible(true);
         scoreCount = 0;
     }
+    
     // method: setScore
     // purpose: Sets the score in the JLabel
     public void setScore(int finalScore) {
         String displayScore = Integer.toString(finalScore);
         scoreLabel.setText(displayScore);
     }
+    
     // method: gameCycle
     // purpose: This is the game engine that takes the color word and the color
     // and it checks if the user's guess is correct and changes the word and 
@@ -390,6 +399,7 @@ public class ColorGameGUI extends javax.swing.JFrame {
             endGame();
         }
     }
+    
     // method: displayDateTime
     // purpose: display current time and date. Update each second.
     public void displayDateTimeColor() {

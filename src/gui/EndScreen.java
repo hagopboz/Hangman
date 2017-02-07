@@ -27,10 +27,10 @@ import javax.swing.KeyStroke;
 import other.Info;
 
 public class EndScreen extends javax.swing.JFrame {
-
-    private int finalScore;
-    private HangmanGUI playScreen;
     
+    // final total score
+    private int finalScore;
+   
     // method: EndScreen
     // purpose: Constructor of the EndScreen class
     public EndScreen(int finalScore) {
@@ -127,7 +127,8 @@ public class EndScreen extends javax.swing.JFrame {
         this.setVisible(false); 
         new MenuGUI().setVisible(true); 
     }//GEN-LAST:event_buttonEndMouseClicked
-
+    // method: saveButtonActionPerformed
+    // purpose: saves user's name
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         ScoreManager sm = new ScoreManager();
         sm.addScore(getName(), finalScore);
