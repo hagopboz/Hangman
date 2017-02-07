@@ -1,8 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/***************************************************************
+* file: SudokuGUI.java
+* author: Hagop Bowazoglanian
+*         John Vincent Canalita
+*         Eugene Lee
+*         Seungyun Lee
+*         Dylan Nguyen
+* 
+* Class: CS 245 – Programming Graphical User Interfaces
+*
+* assignment: program 1.2
+* date last modified: 2/06/2017
+*
+* purpose: This program displays the play screen of Sudoku
+* game and acts as the game engine.
+****************************************************************/
 package gui;
 
 import static gui.ColorGameGUI.finalScore;
@@ -26,25 +37,21 @@ import java.lang.*;
  */
 public class SudokuGUI extends javax.swing.JFrame {
 
-    //public static final int GRID_SIZE = 9;    // Size of the board
-    //public static final int SUBGRID_SIZE = 3; // Size of the sub-grid
-    //static int finalScore;
-    
-    //static int max = 9;
-    //static int min = 1;
-    
-    // The game board composes of 9x9 JTextFields,
-    // each containing String "1" to "9", or empty String
-    //private JTextField[][] tfCells = new JTextField[GRID_SIZE][GRID_SIZE];
-    
+    // count how many times user got wrong
     private int countWrong;
+    // actual board for user to play
     private int[][] board = new int[9][9];
+    // possible score that user can get
     private int possibleScore = 540;
+    // final total score
     static  int finalScore;
+    // answer that will be used to compare with user's answer
     private final int[][] ANSWER = {{8,3,5,4,1,6,9,2,7},{2,9,6,8,5,7,4,3,1},{4,1,7,2,9,3,6,5,8},
                                     {5,6,9,1,3,4,7,8,2},{1,2,3,6,7,8,5,4,9},{7,4,8,5,2,9,1,6,3},
                                     {6,5,2,7,8,1,3,9,4},{9,8,1,3,4,5,2,7,6},{3,7,4,9,6,2,8,1,5}};
+    // maximum number that user can get wrong
     private final int MAX_WRONG = 54;
+    // each incorrect guess is minus 10 points
     private final int MINUS_SCORE = 10;
     
     /**
@@ -3062,42 +3069,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         possibleScore = 0;
         endGame();
     }//GEN-LAST:event_quitActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SudokuGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SudokuGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SudokuGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SudokuGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SudokuGUI(finalScore).setVisible(true);
-            }
-        });
-    }   
-    
+   
     // method: initializeBoard
     // purpose: initialize the board by putting zeros except clues
     public void initializeBoard() {
@@ -3164,21 +3136,22 @@ public class SudokuGUI extends javax.swing.JFrame {
         }
     }
     
-    // method:
-    // purpose:
+    // method: getFinalScore
+    // purpose: return the final total score
     public int getFinalScore() {
         return finalScore;
     }
     
-    // method: 
-    // purpose:
+    // method: setScore
+    // purpose: set the total score and display on it
     public void setScore(int finalScore) {
         String displayScore = Integer.toString(finalScore);
         scoreLabel.setText(displayScore);
     }
     
-    // method:
-    // purpose:
+    // method: endGame
+    // purpose: end the game when user selects the quit button or 
+    // the submit button
     public void endGame() {
         EndScreen endScreen = new EndScreen(getFinalScore());
         this.setVisible(false);
@@ -3291,6 +3264,42 @@ public class SudokuGUI extends javax.swing.JFrame {
         timer.setInitialDelay(0);
         timer.start();
     }
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(SudokuGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(SudokuGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(SudokuGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(SudokuGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new SudokuGUI(finalScore).setVisible(true);
+            }
+        });
+    } 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel alertSign;
     private javax.swing.JLabel background;

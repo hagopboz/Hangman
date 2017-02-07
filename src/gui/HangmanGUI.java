@@ -10,7 +10,7 @@
 * assignment: program 1.1
 * date last modified: 1/25/2016
 *
-* purpose: This program displays the play screen of the hangman
+* purpose: This program displays the play screen of Hangman
 * game and acts as the game engine.
 *
 ****************************************************************/ 
@@ -29,7 +29,7 @@ import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import other.Info;
 
-public class PlayScreenGUI extends javax.swing.JFrame {
+public class HangmanGUI extends javax.swing.JFrame {
    
     //private ColorGameGUI colorGame; // To create new Color Game.
     Thread currentTime;
@@ -48,7 +48,7 @@ public class PlayScreenGUI extends javax.swing.JFrame {
       
     // method: PlayScreenGUI
     // purpose: constructor for the class
-    public PlayScreenGUI() {
+    public HangmanGUI() {
 //           buttonSkip.setToolTipText("Click to skip to Color Game.");
 //           add(buttonSkip);
  
@@ -418,9 +418,7 @@ public class PlayScreenGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hangman");
-        setMaximumSize(new java.awt.Dimension(600, 400));
         setMinimumSize(new java.awt.Dimension(600, 400));
-        setPreferredSize(null);
         setResizable(false);
         setSize(new java.awt.Dimension(600, 400));
         getContentPane().setLayout(null);
@@ -971,7 +969,7 @@ public class PlayScreenGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PlayScreenGUI().setVisible(true);
+                new HangmanGUI().setVisible(true);
             }
             
         });

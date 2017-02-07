@@ -148,7 +148,7 @@ public class MenuGUI extends javax.swing.JFrame {
     // purpose: disables the current screen and enables the Play Screen
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
         this.setVisible(false);
-        new PlayScreenGUI().setVisible(true);
+        new HangmanGUI().setVisible(true);
         
     }//GEN-LAST:event_playButtonActionPerformed
 

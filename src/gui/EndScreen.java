@@ -29,7 +29,7 @@ import other.Info;
 public class EndScreen extends javax.swing.JFrame {
 
     private int finalScore;
-    private PlayScreenGUI playScreen;
+    private HangmanGUI playScreen;
     
     // method: EndScreen
     // purpose: Constructor of the EndScreen class
